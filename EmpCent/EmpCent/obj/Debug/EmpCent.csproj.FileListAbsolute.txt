@@ -1,0 +1,13 @@
+C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\bin\Debug\EmpCent.exe.config
+C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\bin\Debug\EmpCent.exe
+C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\bin\Debug\EmpCent.pdb
+C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.csprojAssemblyReference.cache
+C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.Form1.resources
+C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.Properties.Resources.resources
+C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.csproj.GenerateResource.cache
+C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.csproj.CoreCompileInputs.cache
+C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.exe
+C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.pdb
+C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.Form2.resources
+C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.Form3.resources
+C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.lang_level.resources
