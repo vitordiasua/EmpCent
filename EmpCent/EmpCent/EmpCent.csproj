@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,23 +47,58 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Candidato.cs" />
+    <Compile Include="CheckCandidates.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="CheckCandidates.Designer.cs">
+      <DependentUpon>CheckCandidates.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="Habilitacao.cs" />
+    <Compile Include="LangLevels.cs" />
+    <Compile Include="MoreInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="MoreInfo.Designer.cs">
+      <DependentUpon>MoreInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form3.cs">
+    <Compile Include="Mylist_client.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <Compile Include="Mylist_client.Designer.cs">
+      <DependentUpon>Mylist_client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comp_regst.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comp_regst.Designer.cs">
+      <DependentUpon>Comp_regst.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Connection.cs" />
+    <Compile Include="HomeComp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeComp.Designer.cs">
+      <DependentUpon>HomeComp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExpTrb.cs" />
+    <Compile Include="Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeClient.Designer.cs">
+      <DependentUpon>HomeClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="register_client.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="register_client.Designer.cs">
+      <DependentUpon>register_client.cs</DependentUpon>
     </Compile>
     <Compile Include="lang_level.cs">
       <SubType>Form</SubType>
@@ -70,19 +106,89 @@
     <Compile Include="lang_level.Designer.cs">
       <DependentUpon>lang_level.cs</DependentUpon>
     </Compile>
+    <Compile Include="lista_ofertas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="lista_ofertas.Designer.cs">
+      <DependentUpon>lista_ofertas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyRecruiters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyRecruiters.Designer.cs">
+      <DependentUpon>MyRecruiters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Oferta.cs" />
+    <Compile Include="Oferta_regist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Oferta_regist.Designer.cs">
+      <DependentUpon>Oferta_regist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Oferta_resposta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Oferta_resposta.Designer.cs">
+      <DependentUpon>Oferta_resposta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="HomeRecrutador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeRecrutador.Designer.cs">
+      <DependentUpon>HomeRecrutador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mylist_rec.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mylist_rec.Designer.cs">
+      <DependentUpon>Mylist_rec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="register_recruiter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="register_recruiter.Designer.cs">
+      <DependentUpon>register_recruiter.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CheckCandidates.resx">
+      <DependentUpon>CheckCandidates.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="MoreInfo.resx">
+      <DependentUpon>MoreInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <EmbeddedResource Include="Mylist_client.resx">
+      <DependentUpon>Mylist_client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comp_regst.resx">
+      <DependentUpon>Comp_regst.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeComp.resx">
+      <DependentUpon>HomeComp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeClient.resx">
+      <DependentUpon>HomeClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Oferta_resposta.resx">
+      <DependentUpon>Oferta_resposta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="register_client.resx">
+      <DependentUpon>register_client.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="lang_level.resx">
       <DependentUpon>lang_level.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="lista_ofertas.resx">
+      <DependentUpon>lista_ofertas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyRecruiters.resx">
+      <DependentUpon>MyRecruiters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Oferta_regist.resx">
+      <DependentUpon>Oferta_regist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,6 +199,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="HomeRecrutador.resx">
+      <DependentUpon>HomeRecrutador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mylist_rec.resx">
+      <DependentUpon>Mylist_rec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="register_recruiter.resx">
+      <DependentUpon>register_recruiter.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
