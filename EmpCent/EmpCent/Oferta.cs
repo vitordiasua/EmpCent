@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace EmpCent
 {
-    class Oferta
+    public class Oferta
     {
-        private String id;
-        private String titulo;
-        private String vagas;
-        private String localizacao;
-        private String data;
-        private String idEmpresa;
-        private String idRecrt;
-        private String nivelHabil;
+        public String id;
+        public String titulo;
+        public String vagas;
+        public String localizacao;
+        public String data;
+        public String idEmpresa;
+        public String idRecrt;
+        public String nivelHabil;
 
         public Oferta()
         {
@@ -37,7 +37,7 @@ namespace EmpCent
         }
 
         public override String ToString() {
-            return titulo + "\t" + localizacao + "\t" + vagas + "\t" + data;
+            return titulo + "".PadRight(50 - titulo.Length) + vagas + "".PadRight(20 - vagas.Length) + localizacao + "".PadRight(30 - localizacao.Length);
         }
     }
 }

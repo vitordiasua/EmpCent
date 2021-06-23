@@ -77,7 +77,7 @@ namespace EmpCent
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Mylist_client ml = new Mylist_client();
+            ClienteCand ml = new ClienteCand();
             ml.ShowDialog();
         }
 

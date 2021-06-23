@@ -100,7 +100,7 @@ namespace EmpCent
                 {
                     ExpTrb exp = form.getExp();
                     this.exprTrb.Add(exp);
-                    listBox3.Items.Add(exp.getEmpresa());
+                    listBox3.Items.Add(exp.titulo);
                 }
             }
         }
@@ -114,7 +114,14 @@ namespace EmpCent
                 {
                     Habilitacao hab = form.getHab();
                     this.habl.Add(hab);
-                    listBox1.Items.Add(hab.nome);
+                    if(Convert.ToInt32(hab.nivel) < 8)
+                    {
+                        listBox1.Items.Add(hab.nome);
+                    }
+                    else
+                    {
+                        listBox1.Items.Add(hab.curso);
+                    }
                 }
             }
         }
@@ -217,6 +224,61 @@ namespace EmpCent
 
             Connection.cn.Close();
             Connection.tableIndex = 0;
+            this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItems.Count != 0)
+            {
+                foreach (String s in listBox2.Items)
+                {
+                    foreach (LangLevels l in langLevels)
+                    {
+                        if (l.lang.Equals(s))
+                        {
+                            langLevels.Remove(l);
+                            break;
+                        }
+                    }
+                }
+            }            
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItems.Count != 0)
+            {
+                foreach (String s in listBox1.Items)
+                {
+                    foreach (Habilitacao h in habl)
+                    {
+                        if(h.curso.Equals(s) || h.nome.Equals(s))
+                        {
+                            habl.Remove(h);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void button7_Click_1(object sender, EventArgs e)
+        {
+            if(listBox1.SelectedItems.Count != 0)
+            {
+                foreach (String s in listBox3.Items)
+                {
+                    foreach (ExpTrb exp in exprTrb)
+                    {
+                        if (exp.titulo.Equals(s))
+                        {
+                            exprTrb.Remove(exp);
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 }

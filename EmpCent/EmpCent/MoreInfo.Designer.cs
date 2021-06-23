@@ -59,7 +59,6 @@
             this.label1.Size = new System.Drawing.Size(170, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -181,7 +180,7 @@
             // label15
             // 
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(711, 289);
+            this.label15.Location = new System.Drawing.Point(702, 289);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(235, 23);
             this.label15.TabIndex = 10;
@@ -213,7 +212,6 @@
             this.label18.Size = new System.Drawing.Size(271, 23);
             this.label18.TabIndex = 17;
             this.label18.Text = "label18";
-            this.label18.Click += new System.EventHandler(this.label18_Click);
             // 
             // label19
             // 

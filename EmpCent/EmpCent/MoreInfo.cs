@@ -56,11 +56,11 @@ namespace EmpCent
             label1.Text = "Título:";
             label2.Text = "Nº de Vagas:";
             label3.Text = "Localização:";
-            label4.Text = "Data de Publicação:";
+            label4.Text = "Data Publicação:";
             label5.Text = "Nome da Empresa:";
-            label6.Text = "Localização da Empresa:";
-            label7.Text = "Descrição da Empresa:";
-            label8.Text = "Nível De Habilitação Necessário:";
+            label6.Text = "Localização:";
+            label7.Text = "Descrição:";
+            label8.Text = "Habilitação Necessária:";
             label9.Visible = false ;
             label10.Visible = false;
             label11.Text = titulo;
@@ -125,16 +125,6 @@ namespace EmpCent
             label18.Visible = false;
             label19.Visible = false;
             label20.Visible = false;
-        }
-
-        private void label18_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

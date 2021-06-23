@@ -12,11 +12,13 @@ using System.Windows.Forms;
 
 namespace EmpCent
 {
-    public partial class Mylist_client : Form
+    public partial class ClienteCand : Form
     {
-        public Mylist_client()
+        public List<Oferta> offers = new List<Oferta>();
+
+        public ClienteCand()
         {
-            String email = Interaction.InputBox("Insira o seu e-mail.", "Login", "lorenzodferrari@gmail.com");
+            String email = Interaction.InputBox("Insira o seu e-mail.", "Login");
 
             InitializeComponent();
 
@@ -27,6 +29,8 @@ namespace EmpCent
             cmd.Parameters.AddWithValue("@email", email);
             SqlDataReader reader = cmd.ExecuteReader();
             listBox1.Items.Clear();
+
+            listBox1.Items.Add("Título" + "".PadRight(60 - "Título".Length) + "Nº Vagas" + "".PadRight(20 - "Nº Vagas".Length) + "Localização" + "".PadRight(40 - "Localização".Length));
 
             while (reader.Read())
             {
@@ -41,26 +45,37 @@ namespace EmpCent
                 String nivelHabil = reader["nivelHabilitacao"].ToString();
                 Oferta o = new Oferta(id, titulo, numVagas, localizacao, data, idEmp, idRecrt, nivelHabil);
 
+                offers.Add(o);
                 listBox1.Items.Add(o);
             }
-
             Connection.cn.Close();
-            Connection.tableIndex = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Oferta id = (Oferta)listBox1.SelectedItem;
-            if (id != null)
+
+            Oferta of = (Oferta) listBox1.SelectedItem;
+            if (of != null)
             {
-                MoreInfo mi = new MoreInfo("cliente", id.getId());
+                MoreInfo mi = new MoreInfo("cliente", of.getId());
                 mi.ShowDialog();
             }
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
+            Oferta of = (Oferta)listBox1.SelectedItem;
+            if (of != null)
+            {
+                if (!Connection.verifySGBDConnection())
+                    return;
 
+                SqlCommand cmd = new SqlCommand("delete from projeto.Desempregado_Candidato_Oferta where idOferta = @idOferta", Connection.cn);
+                cmd.Parameters.AddWithValue("@idOferta", of.id);
+                cmd.ExecuteNonQuery();
+                listBox1.Items.Remove(of);
+            }
+                
         }
     }
 }

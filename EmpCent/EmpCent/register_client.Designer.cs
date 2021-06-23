@@ -269,12 +269,11 @@
             // 
             // textBox10
             // 
-            this.textBox10.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.textBox10.ForeColor = System.Drawing.SystemColors.WindowText;
             this.textBox10.Location = new System.Drawing.Point(181, 574);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(188, 22);
             this.textBox10.TabIndex = 27;
-            this.textBox10.Text = "Insira um pequeno texto sobre si.";
             // 
             // label13
             // 
@@ -320,9 +319,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(617, 220);
+            this.button3.Location = new System.Drawing.Point(617, 227);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(126, 44);
+            this.button3.Size = new System.Drawing.Size(126, 28);
             this.button3.TabIndex = 32;
             this.button3.Text = "Adicionar Língua";
             this.button3.UseVisualStyleBackColor = true;
@@ -424,12 +423,13 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(758, 220);
+            this.button2.Location = new System.Drawing.Point(794, 227);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(126, 44);
+            this.button2.Size = new System.Drawing.Size(126, 28);
             this.button2.TabIndex = 74;
             this.button2.Text = "Remover Língua";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // listBox2
             // 
@@ -457,6 +457,7 @@
             this.button7.TabIndex = 77;
             this.button7.Text = "Remover Experiência";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click_1);
             // 
             // button8
             // 
@@ -466,6 +467,7 @@
             this.button8.TabIndex = 78;
             this.button8.Text = "Remover Habilitação";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // register_client
             // 

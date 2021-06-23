@@ -81,11 +81,11 @@
     <Compile Include="MyListComp.Designer.cs">
       <DependentUpon>MyListComp.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mylist_client.cs">
+    <Compile Include="ClienteCand.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mylist_client.Designer.cs">
-      <DependentUpon>Mylist_client.cs</DependentUpon>
+    <Compile Include="ClienteCand.Designer.cs">
+      <DependentUpon>ClienteCand.cs</DependentUpon>
     </Compile>
     <Compile Include="register_comp.cs">
       <SubType>Form</SubType>
@@ -186,8 +186,8 @@
     <EmbeddedResource Include="MyListComp.resx">
       <DependentUpon>MyListComp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mylist_client.resx">
-      <DependentUpon>Mylist_client.cs</DependentUpon>
+    <EmbeddedResource Include="ClienteCand.resx">
+      <DependentUpon>ClienteCand.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="register_comp.resx">
       <DependentUpon>register_comp.cs</DependentUpon>
