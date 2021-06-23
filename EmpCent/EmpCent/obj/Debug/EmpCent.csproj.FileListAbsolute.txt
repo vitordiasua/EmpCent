@@ -11,7 +11,6 @@ C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug
 C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.Home.resources
 C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.register_recruiter.resources
 C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.lista_ofertas.resources
-C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.Comp_regst.resources
 C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.MyRecruiters.resources
 C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.Oferta_regist.resources
 C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.Mylist_client.resources
@@ -24,3 +23,4 @@ C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug
 C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.CheckCandidates.resources
 C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.HomeComp.resources
 C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.MyListComp.resources
+C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.register_comp.resources

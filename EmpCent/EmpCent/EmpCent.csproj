@@ -54,6 +54,7 @@
     <Compile Include="CheckCandidates.Designer.cs">
       <DependentUpon>CheckCandidates.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComboBoxItem.cs" />
     <Compile Include="Habilitacao.cs" />
     <Compile Include="LangLevels.cs" />
     <Compile Include="MoreInfo.cs">
@@ -74,11 +75,11 @@
     <Compile Include="Mylist_client.Designer.cs">
       <DependentUpon>Mylist_client.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comp_regst.cs">
+    <Compile Include="register_comp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comp_regst.Designer.cs">
-      <DependentUpon>Comp_regst.cs</DependentUpon>
+    <Compile Include="register_comp.Designer.cs">
+      <DependentUpon>register_comp.cs</DependentUpon>
     </Compile>
     <Compile Include="Connection.cs" />
     <Compile Include="HomeComp.cs">
@@ -170,8 +171,8 @@
     <EmbeddedResource Include="Mylist_client.resx">
       <DependentUpon>Mylist_client.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comp_regst.resx">
-      <DependentUpon>Comp_regst.cs</DependentUpon>
+    <EmbeddedResource Include="register_comp.resx">
+      <DependentUpon>register_comp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeComp.resx">
       <DependentUpon>HomeComp.cs</DependentUpon>

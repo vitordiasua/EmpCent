@@ -43,7 +43,7 @@ namespace EmpCent
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Comp_regst rg = new Comp_regst();
+            register_comp rg = new register_comp();
             rg.ShowDialog();
         }
 

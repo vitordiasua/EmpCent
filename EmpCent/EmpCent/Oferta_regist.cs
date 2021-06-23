@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,7 +16,31 @@ namespace EmpCent
     {
         public Oferta_regist()
         {
+            String email = Interaction.InputBox("Insira o seu e-mail.", "Login", "fdportas@sapo.pt");
+
             InitializeComponent();
+
+            loadHabilitacoes();
+        }
+
+        public void loadHabilitacoes() {
+            if (!Connection.verifySGBDConnection())
+                return;
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.Nivel_Habilitacao", Connection.cn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            comboBox2.Items.Clear();
+
+            while (reader.Read())
+            {
+                String id = reader["idNivel"].ToString();
+                String lvl = reader["descricaoNivel"].ToString();
+                ComboBoxItem itm = new ComboBoxItem(id, lvl);
+                comboBox2.Items.Add(itm);
+            }
+
+            Connection.cn.Close();
+            Connection.tableIndex = 0;
         }
 
         private void Oferta_regist_Load(object sender, EventArgs e)
@@ -26,6 +52,28 @@ namespace EmpCent
         {
 
             DateTime today = DateTime.Today;
+            if (!Connection.verifySGBDConnection())
+                return;
+
+            String nome = textBox1.Text;
+            String local = textBox2.Text;
+            String descricao = textBox3.Text;
+
+            SqlCommand cmd = new SqlCommand("EXEC insertEmpresa @nome, @local, @descricao", Connection.cn);
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@nome", nome);
+            cmd.Parameters.AddWithValue("@local", local);
+            cmd.Parameters.AddWithValue("@descricao", descricao);
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            Connection.cn.Close();
 
         }
 

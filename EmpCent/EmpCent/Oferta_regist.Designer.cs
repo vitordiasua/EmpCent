@@ -48,6 +48,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button6
@@ -236,11 +238,36 @@
             this.label9.Text = "Tipo de Contrato";
             this.label9.Visible = false;
             // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Male",
+            "Female",
+            "Other"});
+            this.comboBox2.Location = new System.Drawing.Point(596, 355);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 24);
+            this.comboBox2.TabIndex = 145;
+            this.comboBox2.Visible = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(433, 358);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(151, 17);
+            this.label10.TabIndex = 144;
+            this.label10.Text = "Habilitação necessária";
+            this.label10.Visible = false;
+            // 
             // Oferta_regist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(820, 485);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.textBox6);
@@ -290,5 +317,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label10;
     }
 }

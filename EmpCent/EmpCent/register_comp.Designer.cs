@@ -1,6 +1,6 @@
 ﻿namespace EmpCent
 {
-    partial class Comp_regst
+    partial class register_comp
     {
         /// <summary>
         /// Required designer variable.
@@ -47,6 +47,7 @@
             this.button6.TabIndex = 129;
             this.button6.Text = "Submeter Dados";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // label17
             // 
@@ -114,7 +115,7 @@
             this.label1.TabIndex = 113;
             this.label1.Text = "Nome";
             // 
-            // Comp_regst
+            // register_comp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -128,7 +129,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.Name = "Comp_regst";
+            this.Name = "register_comp";
             this.Text = "Comp_regst";
             this.ResumeLayout(false);
             this.PerformLayout();
