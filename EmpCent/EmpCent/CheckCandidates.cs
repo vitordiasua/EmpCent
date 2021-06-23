@@ -20,13 +20,8 @@ namespace EmpCent
             if (!Connection.verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT * " +
-                "FROM ( SELECT Desempregado_Candidato_Oferta.numRegisto, primeiroNome,nomesMeio,ultimoNome,dataNascimento,telefone,sexo, idade, email, rua , codigoPostal, localidade, descricao, nomeLingua, idNacionalidade " +
-                        "FROM (projeto.Desempregado_Candidato_Oferta JOIN ( SELECT Pessoa.numRegisto, primeiroNome,nomesMeio,ultimoNome,dataNascimento,telefone,sexo, idade, email, idLinguaMaterna, rua , codigoPostal, localidade, descricao, idNacionalidade " +
-                                                                            "FROM projeto.Pessoa JOIN projeto.Desempregado ON Pessoa.numRegisto = Desempregado.numRegisto) AS Candidate ON Desempregado_Candidato_Oferta.numRegisto = Candidate.numRegisto ) " +
-                                                                                    "JOIN projeto.Lingua ON idLinguaMaterna = idLingua " +
-                        "WHERE idOferta = " + idOferta + " ) AS plusLanguage " +
-                "JOIN projeto.Nacionalidade ON plusLanguage.idNacionalidade = Nacionalidade.idNacionalidade ", Connection.cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.RecolherCandidatosDeUmaOferta( @idOferta )", Connection.cn);
+            cmd.Parameters.AddWithValue("@idOferta", Int32.Parse(idOferta));
             SqlDataReader reader = cmd.ExecuteReader();
             listBox1.Items.Clear();
 

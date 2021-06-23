@@ -25,18 +25,17 @@ namespace EmpCent
                 loadInfoOfertas();
             else if (entity.Equals("candidato"))
                 loadInfoCandidato((Candidato)o);
+            else if (entity.Equals("empresa")) {
+                loadInfoRecrutador((Recrutador)o);
+            }
         }
 
         public void loadInfoOfertas() {
             if (!Connection.verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT *" +
-                                           "FROM(SELECT idOferta, titulo, numVagas, Oferta.localizacao, dataPublicacao, idRecrutador, nivelHabilitacao, nome, Empresa.localizacao AS empLocal, descricao "+
-                                               "FROM projeto.Oferta JOIN projeto.Empresa ON Oferta.idEmpresa = Empresa.idEmpresa "+ 
-                                              "WHERE Oferta.idOferta =" + this.id + ") AS ofEmp "+ 
-                                             "JOIN  projeto.Nivel_Habilitacao ON ofEmp.nivelHabilitacao = projeto.Nivel_Habilitacao.idNivel", Connection.cn);
-            //SqlCommand cmd = new SqlCommand("SELECT * FROM(SELECT idOferta, titulo, numVagas, Oferta.localizacao, dataPublicacao, idRecrutador, nivelHabilitacao, nome, Empresa.localizacao AS empLocal, descricao FROM projeto.Oferta JOIN projeto.Empresa ON Oferta.idEmpresa = Empresa.idEmpresa WHERE Oferta.idOferta =" + this.id + ") AS ofEmp JOIN  projeto.Nivel_Habilitacao ON ofEmp.nivelHabilitacao = projeto.Nivel_Habilitacao.idNivel", Connection.cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.RecolherInfoDeOferta (@idOferta)", Connection.cn);
+            cmd.Parameters.AddWithValue("@idOferta", Int32.Parse(id));
             SqlDataReader reader = cmd.ExecuteReader();
 
             reader.Read();
@@ -101,6 +100,31 @@ namespace EmpCent
             label20.Visible = true;
             label19.Text = cand.getNacio() + " | " + cand.getLingua();
             label20.Text = cand.getDescr();
+        }
+
+        public void loadInfoRecrutador(Recrutador rc)
+        {
+
+            label1.Text = "Nome:";
+            label2.Text = "Data de Nascimento:";
+            label3.Text = "Telefone:";
+            label4.Text = "Sexo:";
+            label5.Text = "Idade:";
+            label6.Text = "e-mail:";
+            label7.Text = "Metodo de Seleção:";
+            label8.Visible = false;
+            label9.Visible = false;
+            label10.Visible = false;
+            label11.Text = rc.getNome();
+            label12.Text = rc.getData();
+            label13.Text = rc.getTele();
+            label14.Text = rc.getSexo();
+            label15.Text = rc.getIdade();
+            label16.Text = rc.getEmail();
+            label17.Text = rc.getMetodo();
+            label18.Visible = false;
+            label19.Visible = false;
+            label20.Visible = false;
         }
 
         private void label18_Click(object sender, EventArgs e)

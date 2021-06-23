@@ -23,3 +23,4 @@ C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug
 C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.Oferta_resposta.resources
 C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.CheckCandidates.resources
 C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.HomeComp.resources
+C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.MyListComp.resources

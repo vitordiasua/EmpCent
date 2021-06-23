@@ -12,19 +12,20 @@ using System.Windows.Forms;
 
 namespace EmpCent
 {
-    public partial class Mylist_rec : Form
+    public partial class MyListComp : Form
     {
-        public Mylist_rec()
+        public MyListComp()
         {
-            String email = Interaction.InputBox("Insira o seu e-mail.", "Login", "fdportas@sapo.pt");
+
+            String empresa = Interaction.InputBox("Insira o nome da sua empresa.", "Login", "Techine");
 
             InitializeComponent();
 
             if (!Connection.verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.RecolherOfertasDeRecrutador ( @email )", Connection.cn);
-            cmd.Parameters.AddWithValue("@email", email);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.RecolherOfertasDeEmpresa ( @empresa )", Connection.cn);
+            cmd.Parameters.AddWithValue("@empresa", empresa);
             SqlDataReader reader = cmd.ExecuteReader();
             listBox1.Items.Clear();
 
@@ -47,33 +48,21 @@ namespace EmpCent
             Connection.tableIndex = 0;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            Oferta id = (Oferta)listBox1.SelectedItem;
-            if (id != null)
-            {
-                MoreInfo mi = new MoreInfo("recrutador", id.getId());
-                mi.ShowDialog();
+            Oferta of = (Oferta)listBox1.SelectedItem;
+            if (of != null) {
+                MoreInfo mi = new MoreInfo("recrutador", of.getId());
+                mi.ShowDialog();            
             }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-
-            Oferta id = (Oferta)listBox1.SelectedItem;
-            if (id != null)
+            Oferta of = (Oferta)listBox1.SelectedItem;
+            if (of != null)
             {
-                CheckCandidates cc = new CheckCandidates(id.getId());
+                CheckCandidates cc = new CheckCandidates(of.getId());
                 cc.ShowDialog();
             }
         }

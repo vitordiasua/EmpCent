@@ -62,6 +62,12 @@
     <Compile Include="MoreInfo.Designer.cs">
       <DependentUpon>MoreInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyListComp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyListComp.Designer.cs">
+      <DependentUpon>MyListComp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mylist_client.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,7 @@
     <Compile Include="HomeClient.Designer.cs">
       <DependentUpon>HomeClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Recrutador.cs" />
     <Compile Include="register_client.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MoreInfo.resx">
       <DependentUpon>MoreInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyListComp.resx">
+      <DependentUpon>MyListComp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mylist_client.resx">
       <DependentUpon>Mylist_client.cs</DependentUpon>

@@ -120,6 +120,7 @@
             this.empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
             this.empresaToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
             this.empresaToolStripMenuItem.Text = "Empresa";
+            this.empresaToolStripMenuItem.Click += new System.EventHandler(this.empresaToolStripMenuItem_Click);
             // 
             // Home
             // 

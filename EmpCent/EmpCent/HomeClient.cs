@@ -80,5 +80,13 @@ namespace EmpCent
             Mylist_client ml = new Mylist_client();
             ml.ShowDialog();
         }
+
+        private void empresaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            HomeComp rec = new HomeComp();
+            rec.ShowDialog();
+            this.Close();
+        }
     }
 }

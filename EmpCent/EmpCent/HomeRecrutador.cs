@@ -56,5 +56,13 @@ namespace EmpCent
             Mylist_rec ml = new Mylist_rec();
             ml.ShowDialog();
         }
+
+        private void empresaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            HomeComp rec = new HomeComp();
+            rec.ShowDialog();
+            this.Close();
+        }
     }
 }

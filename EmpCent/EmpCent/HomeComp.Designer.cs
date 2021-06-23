@@ -81,6 +81,7 @@
             this.empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
             this.empresaToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
             this.empresaToolStripMenuItem.Text = "Empresa";
+            this.empresaToolStripMenuItem.Click += new System.EventHandler(this.empresaToolStripMenuItem_Click);
             // 
             // button4
             // 
@@ -130,7 +131,7 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Página de Empresa";
             // 
-            // Empresa
+            // HomeComp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -141,7 +142,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Name = "Empresa";
+            this.Name = "HomeComp";
             this.Text = "Empresa";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

@@ -55,8 +55,13 @@ namespace EmpCent
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Mylist_rec rml = new Mylist_rec();
-            rml.ShowDialog();
+            MyListComp cml = new MyListComp();
+            cml.ShowDialog();
+        }
+
+        private void empresaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -16,18 +16,15 @@ namespace EmpCent
     {
         public Mylist_client()
         {
-            String email = Interaction.InputBox("Insira o seu e-mail.", "Login", "example@example.com");
+            String email = Interaction.InputBox("Insira o seu e-mail.", "Login", "pedrobantunes95@gmail.com");
 
             InitializeComponent();
 
             if (!Connection.verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT *" + //projeto.Oferta.idOferta, numRegisto, titulo, numVagas, localizacao, dataPublicacao idEmpresa,idRecrutador, nivelHabilitacao"+
-                                            "FROM ( SELECT idOferta, Pessoa.numRegisto, email " + 
-                                                   "FROM projeto.Desempregado_Candidato_Oferta JOIN projeto.Pessoa ON Pessoa.numRegisto = Desempregado_Candidato_Oferta.numRegisto) as Client " + 
-                                                "JOIN projeto.Oferta ON Client.idOferta = Oferta.idOferta " +
-                                            "WHERE email = \'" + email + "\'", Connection.cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.RecolherCandidaturasDeDesempregado ( @email )", Connection.cn);
+            cmd.Parameters.AddWithValue("@email", email);
             SqlDataReader reader = cmd.ExecuteReader();
             listBox1.Items.Clear();
 

@@ -77,5 +77,13 @@ namespace EmpCent
             rec.ShowDialog();
             this.Close();
         }
+
+        private void empresaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            HomeComp rec = new HomeComp();
+            rec.ShowDialog();
+            this.Close();
+        }
     }
 }
