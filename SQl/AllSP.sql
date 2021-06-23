@@ -250,6 +250,34 @@ as
 	end
 go
 
+create proc insertCandidatura(
+	@email			nvarchar(254),
+	@idOferta		int)
+as
+	begin
+		declare @numRegisto int;
+		select @numRegisto=numRegisto from projeto.Pessoa where email = @email;
+
+		begin transaction
+			insert into [projeto].[Desempregado_Candidato_Oferta] (idOferta, numRegisto)
+			values (@idOferta, @numRegisto);
+		commit;
+	end
+go
+
+create proc deleteCandidatura(
+	@email			nvarchar(254),
+	@idOferta		int)
+as
+	begin
+		declare @numRegisto int;
+		select @numRegisto=numRegisto from projeto.Pessoa where email = @email;
+
+		begin transaction
+			delete from [projeto].[Desempregado_Candidato_Oferta] where numRegisto = @numRegisto and idOferta = @idOferta;
+		commit;
+	end
+go
 
 
 

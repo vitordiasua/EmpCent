@@ -52,21 +52,17 @@ namespace EmpCent
             Connection.tableIndex = 0;
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             if (ent.Equals("cliente"))
             {
-                Oferta_resposta of = new Oferta_resposta();
-                of.ShowDialog();
+                Oferta of = (Oferta) listBox1.SelectedItem;
+                Oferta_resposta form = new Oferta_resposta(of.id);
+                form.ShowDialog();
             }
             else if (ent.Equals("recrutador")) {
-                Oferta_regist of = new Oferta_regist();
-                of.ShowDialog();
+                Oferta_regist form = new Oferta_regist();
+                form.ShowDialog();
             }
             
         }
@@ -79,11 +75,6 @@ namespace EmpCent
                 MoreInfo mi = new MoreInfo(ent, id.getId());
                 mi.ShowDialog();
             }
-        }
-
-        private void lista_ofertas_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -15,10 +15,11 @@ namespace EmpCent
     public partial class ClienteCand : Form
     {
         public List<Oferta> offers = new List<Oferta>();
+        public String email;
 
         public ClienteCand()
         {
-            String email = Interaction.InputBox("Insira o seu e-mail.", "Login");
+            email = Interaction.InputBox("Insira o seu e-mail.", "Login");
 
             InitializeComponent();
 
@@ -70,8 +71,9 @@ namespace EmpCent
                 if (!Connection.verifySGBDConnection())
                     return;
 
-                SqlCommand cmd = new SqlCommand("delete from projeto.Desempregado_Candidato_Oferta where idOferta = @idOferta", Connection.cn);
+                SqlCommand cmd = new SqlCommand("exec deleteCandidatura @email, @idOferta", Connection.cn);
                 cmd.Parameters.AddWithValue("@idOferta", of.id);
+                cmd.Parameters.AddWithValue("@email", email);
                 cmd.ExecuteNonQuery();
                 listBox1.Items.Remove(of);
             }
