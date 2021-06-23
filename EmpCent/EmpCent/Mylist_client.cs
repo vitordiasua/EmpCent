@@ -16,7 +16,7 @@ namespace EmpCent
     {
         public Mylist_client()
         {
-            String email = Interaction.InputBox("Insira o seu e-mail.", "Login", "pedrobantunes95@gmail.com");
+            String email = Interaction.InputBox("Insira o seu e-mail.", "Login", "lorenzodferrari@gmail.com");
 
             InitializeComponent();
 

@@ -50,30 +50,64 @@ namespace EmpCent
 
         private void button6_Click(object sender, EventArgs e)
         {
-
-            DateTime today = DateTime.Today;
-            if (!Connection.verifySGBDConnection())
-                return;
-
-            String nome = textBox1.Text;
-            String local = textBox2.Text;
-            String descricao = textBox3.Text;
-
-            SqlCommand cmd = new SqlCommand("EXEC insertEmpresa @nome, @local, @descricao", Connection.cn);
-            cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@nome", nome);
-            cmd.Parameters.AddWithValue("@local", local);
-            cmd.Parameters.AddWithValue("@descricao", descricao);
-            try
+            if (radioButton1.Checked)
             {
-                cmd.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+                DateTime today = DateTime.Today;
+                if (!Connection.verifySGBDConnection())
+                    return;
 
-            Connection.cn.Close();
+                String titulo = textBox1.Text;
+                String vagas = textBox2.Text;
+                String local = textBox3.Text;
+                String duracao = textBox4.Text;
+                String observacoes = textBox5.Text;
+                String local = textBox6.Text;
+                String local = comboBox1.SelectedItem;
+                String local = (Habilitacao)comboBox2.SelectedItem;
+
+
+
+                SqlCommand cmd = new SqlCommand("EXEC insertEstagio @nome, @local, @descricao", Connection.cn);
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@nome", nome);
+                cmd.Parameters.AddWithValue("@local", local);
+                cmd.Parameters.AddWithValue("@descricao", descricao);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                Connection.cn.Close();
+            }
+            else if (radioButton2.Checked) {
+                DateTime today = DateTime.Today;
+                if (!Connection.verifySGBDConnection())
+                    return;
+
+                String nome = textBox1.Text;
+                String local = textBox2.Text;
+                String descricao = textBox3.Text;
+
+                SqlCommand cmd = new SqlCommand("EXEC insertEmprego @nome, @local, @descricao", Connection.cn);
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@nome", nome);
+                cmd.Parameters.AddWithValue("@local", local);
+                cmd.Parameters.AddWithValue("@descricao", descricao);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                Connection.cn.Close();
+            }
 
         }
 

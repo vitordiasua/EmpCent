@@ -249,7 +249,6 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 24);
             this.comboBox2.TabIndex = 145;
-            this.comboBox2.Visible = false;
             // 
             // label10
             // 
@@ -259,7 +258,6 @@
             this.label10.Size = new System.Drawing.Size(151, 17);
             this.label10.TabIndex = 144;
             this.label10.Text = "Habilitação necessária";
-            this.label10.Visible = false;
             // 
             // Oferta_regist
             // 

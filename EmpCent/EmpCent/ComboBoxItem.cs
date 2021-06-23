@@ -13,5 +13,7 @@ namespace EmpCent
             this.id = id;
             this.content = content;
         }
+
+        public String getId() { return this.id; }
     }
 }
