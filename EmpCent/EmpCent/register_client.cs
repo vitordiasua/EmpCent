@@ -15,10 +15,9 @@ namespace EmpCent
     {
         private List<Habilitacao> habl = new List<Habilitacao>();
         private List<ExpTrb> exprTrb = new List<ExpTrb>();
-        private List<String> ling = new List<string>();
+        private List<LangLevels> langLevels = new List<LangLevels>();
         private Dictionary<String,String> countries = new Dictionary<string, string>();
         private Dictionary<String, String> languages = new Dictionary<string, string>();
-        private Dictionary<String, String> habLvl  = new Dictionary<string, string>();
 
         public register_client()
         {
@@ -27,18 +26,12 @@ namespace EmpCent
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            for (int i = 1950; i <= 2021; i++)
-            {
-                comboBox5.Items.Add(i);
-            }
-
-            comboBox5.SelectedIndex = 71;
-
             loadNationality();
             loadLanguages();
-            loadHabilitationsLevels();
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "yyyy-MM-dd";
         }
-
+   
         private void loadLanguages() {
             if (!Connection.verifySGBDConnection())
                 return;
@@ -46,38 +39,15 @@ namespace EmpCent
             SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.Lingua ORDER BY projeto.Lingua.nomeLingua", Connection.cn);
             SqlDataReader reader = cmd.ExecuteReader();
             comboBox3.Items.Clear();
-            comboBox6.Items.Clear();
 
             while (reader.Read())
             {
                 String id = reader["idLingua"].ToString();
                 String lang = reader["nomeLingua"].ToString();
 
-                comboBox3.Items.Add(lang);
-                comboBox6.Items.Add(lang);
                 languages.Add(lang, id);
-            }
 
-            Connection.cn.Close();
-            Connection.tableIndex = 0;
-        }
-
-        private void loadHabilitationsLevels()
-        {
-            if (!Connection.verifySGBDConnection())
-                return;
-
-            SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.Nivel_Habilitacao", Connection.cn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            comboBox4.Items.Clear();
-
-            while (reader.Read())
-            {
-                String id = reader["idNivel"].ToString();
-                String lvl = reader["descricaoNivel"].ToString();
-
-                comboBox4.Items.Add(lvl);
-                habLvl.Add(lvl, id);
+                comboBox3.Items.Add(lang);
             }
 
             Connection.cn.Close();
@@ -105,22 +75,11 @@ namespace EmpCent
             Connection.tableIndex = 0;
         }
 
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
             openFileDialog1.InitialDirectory = "C:\\";
             openFileDialog1.Title = "Open CV";
             openFileDialog1.ShowDialog();
-
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
         }
 
@@ -132,90 +91,132 @@ namespace EmpCent
             //textBox6.Text = openFileDialog1.SafeFileName;
         }
 
-        private void label15_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            lang_level client = new lang_level(ling);
-            client.ShowDialog();
-        }
-
-        private void textBox10_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label19_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void label28_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label26_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label25_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button5_Click(object sender, EventArgs e)
         {
-            String empresa = textBox16.Text;
-            String lcz = textBox17.Text;
-            String descr = textBox15.Text;
-            DateTime start = dateTimePicker2.Value;
-            DateTime end = dateTimePicker2.Value;
-            this.exprTrb.Add(new ExpTrb(empresa, lcz, descr, start.ToString(), end.ToString()));
+            using (var form = new ClienteExpTrab())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    ExpTrb exp = form.getExp();
+                    this.exprTrb.Add(exp);
+                    listBox3.Items.Add(exp.getEmpresa());
+                }
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            String nivel = comboBox4.SelectedItem.ToString();
-            String ano = comboBox5.SelectedItem.ToString();
-            String curso = textBox14.Text;
-            String local = textBox13.Text;
-            String nota = textBox12.Text;
-            Habilitacao toRemove = null;
-            foreach (var h in habl) {
-                if (h.getNivel().Equals(nivel)) {
-                    toRemove = h;
+            using (var form = new ClienteHabAca())
+            {
+                var result = form.ShowDialog();
+                if(result == DialogResult.OK)
+                {
+                    Habilitacao hab = form.getHab();
+                    this.habl.Add(hab);
+                    listBox1.Items.Add(hab.nome);
                 }
             }
-            if (toRemove != null)
-                habl.Remove(toRemove);
-
-            this.habl.Add(new Habilitacao(nivel, ano, curso, local, nota));
-
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if(!ling.Contains(comboBox6.Text))
-                ling.Add(comboBox6.Text);
+            using (var form = new ClienteLangLevel())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    LangLevels langLevels = form.GetLangLevels();
+                    this.langLevels.Add(langLevels);
+                    listBox2.Items.Add(langLevels.getLang());
+                }
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = "C:\\";
+            openFileDialog1.Title = "Open CV";
+            openFileDialog1.ShowDialog();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (!Connection.verifySGBDConnection())
+                return;
+
+            int numRegisto = 0;
+
+            SqlCommand cmd;
+
+            cmd = new SqlCommand("insertDesempregado", Connection.cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@primeiroNome", textBox1.Text);
+            cmd.Parameters.AddWithValue("@nomesMeio", textBox2.Text);
+            cmd.Parameters.AddWithValue("@ultimoNome", textBox3.Text);
+            SqlParameter dataNascimento = cmd.Parameters.Add("@dataNascimento", SqlDbType.Date);
+            dataNascimento.Value = dateTimePicker1.Value;
+            cmd.Parameters.AddWithValue("@telefone", textBox4.Text);
+            cmd.Parameters.AddWithValue("@sexo", comboBox1.SelectedIndex);
+            cmd.Parameters.AddWithValue("@email", textBox5.Text);
+            cmd.Parameters.AddWithValue("@idLinguaMaterna", languages[comboBox3.SelectedItem.ToString()]);
+            cmd.Parameters.AddWithValue("@rua", textBox7.Text);
+            cmd.Parameters.AddWithValue("@codigoPostal", textBox8.Text);
+            cmd.Parameters.AddWithValue("@localidade", textBox9.Text);
+            cmd.Parameters.AddWithValue("@descricao", textBox10.Text);
+            cmd.Parameters.AddWithValue("@idNacionalidade", countries[comboBox2.SelectedItem.ToString()]);
+
+            SqlParameter returnValue = new SqlParameter("@numRegisto", SqlDbType.Int);
+            returnValue.Direction = ParameterDirection.Output;
+            cmd.Parameters.Add(returnValue);
+            cmd.ExecuteNonQuery();
+            
+            numRegisto = (int)cmd.Parameters["@numRegisto"].Value;
+            
+
+            foreach(Habilitacao hab in habl){
+                cmd = new SqlCommand("exec insertHabilitacaoAcademica @numRegisto, @nomeCurso, @estabelecimentoEnsino, @idNivelHabilitacao, @anoConclusao, @notaFinal", Connection.cn);
+                cmd.Parameters.AddWithValue("@numRegisto", numRegisto);
+                cmd.Parameters.AddWithValue("@nomeCurso", hab.curso);
+                cmd.Parameters.AddWithValue("@estabelecimentoEnsino", hab.local);
+                cmd.Parameters.AddWithValue("@idNivelHabilitacao", hab.nivel);
+                cmd.Parameters.AddWithValue("@anoConclusao", hab.ano);
+                cmd.Parameters.AddWithValue("@notaFinal", hab.nota);
+
+                cmd.ExecuteNonQuery();
+
+            }
+            SqlParameter dataInicio, dataFim;
+            foreach (ExpTrb exp in exprTrb)
+            {
+                cmd = new SqlCommand("exec insertExperienciaTrabalho @numRegisto, @titulo, @dataInicio, @dataFim, @localizacao, @empresa", Connection.cn);
+                cmd.Parameters.AddWithValue("@numRegisto", numRegisto);
+                cmd.Parameters.AddWithValue("@titulo", exp.titulo);
+                dataInicio = cmd.Parameters.Add("@dataInicio", SqlDbType.Date);
+                dataInicio.Value = exp.inicio;
+                dataFim = cmd.Parameters.Add("@dataFim", SqlDbType.Date);
+                dataFim.Value = exp.fim;
+                cmd.Parameters.AddWithValue("@localizacao", exp.locl);
+                cmd.Parameters.AddWithValue("@empresa", exp.empresa);
+
+                cmd.ExecuteNonQuery();
+
+            }
+
+            foreach (LangLevels lang in langLevels)
+            {
+                cmd = new SqlCommand("exec insertFala @numRegisto, @nomeLingua, @nivelLeitura, @nivelEscrita, @nivelOral", Connection.cn);
+                cmd.Parameters.AddWithValue("@numRegisto", numRegisto);
+                cmd.Parameters.AddWithValue("@nomeLingua", lang.lang);
+                cmd.Parameters.AddWithValue("@nivelLeitura", lang.read);
+                cmd.Parameters.AddWithValue("@nivelEscrita", lang.write);
+                cmd.Parameters.AddWithValue("@nivelOral", lang.oral);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            Connection.cn.Close();
+            Connection.tableIndex = 0;
         }
     }
 }

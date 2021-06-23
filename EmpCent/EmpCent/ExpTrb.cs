@@ -6,15 +6,20 @@ using System.Threading.Tasks;
 
 namespace EmpCent
 {
-    class ExpTrb
+    public class ExpTrb
     {
-        private String empresa, locl, descricao, inicio, fim;
-        public ExpTrb(String empresa, String locl, String descricao, String inicio, String fim) {
+        public String titulo, empresa, locl, inicio, fim;
+        public ExpTrb(String titulo, String empresa, String locl, String inicio, String fim) {
             this.empresa = empresa;
             this.locl = locl;
-            this.descricao = descricao;
+            this.titulo = titulo;
             this.inicio = inicio;
             this.fim = fim;
+        }
+
+        public String getEmpresa()
+        {
+            return this.empresa;
         }
     }
 }

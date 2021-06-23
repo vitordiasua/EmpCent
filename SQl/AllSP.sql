@@ -60,6 +60,32 @@ as
 	end
 go
 
+create proc insertDesempregado(
+			@primeiroNome				varchar(20),
+			@nomesMeio					varchar(50),
+			@ultimoNome					varchar(30),
+			@dataNascimento				date,
+			@telefone					char(9),
+			@sexo						char(1),
+			@email						nvarchar(254),
+			@idLinguaMaterna			smallint,
+			@rua						varchar(30),
+			@codigoPostal				nchar(8),
+			@localidade					varchar(30),
+			@descricao					varchar(200),
+			@idNacionalidade			smallint,
+			@numRegisto					int OUTPUT)
+as
+	begin
+	begin transaction
+		exec insertPessoa @primeiroNome, @nomesMeio, @ultimoNome, @dataNascimento, @telefone, @sexo, @email, @numRegisto output;
+
+		insert into [projeto].[Desempregado] (numRegisto, idLinguaMaterna, rua, codigoPostal, localidade, descricao, idNacionalidade)
+			values (@numRegisto, @idLinguaMaterna, @rua, @codigoPostal, @localidade, @descricao, @idNacionalidade)
+	commit;
+	end
+go
+
 create proc insertEmprego(
 	@titulo					varchar(40),
 	@numVagas				smallint,
@@ -203,6 +229,24 @@ as
 			begin
 				raiserror('Desempregado nao existe',16,1)
 			end
+	end
+go
+
+create proc insertFala(
+	@numRegisto				int,
+	@nomeLingua				varchar(30),
+	@nivelLeitura			smallint,
+	@nivelEscrita			smallint,
+	@nivelOral				smallint)
+as
+	begin
+		declare @idLingua int;
+
+		select @idLingua=idLingua from projeto.Lingua where nomeLingua=@nomeLingua;
+		begin transaction
+			insert into [projeto].[Desempregado_Fala_Lingua] (numRegisto, idLingua, nivelLeitura, nivelEscrita, nivelOral)
+			values (@numRegisto, @idLingua, @nivelLeitura, @nivelEscrita, @nivelOral)
+		commit;
 	end
 go
 

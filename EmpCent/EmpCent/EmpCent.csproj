@@ -54,7 +54,19 @@
     <Compile Include="CheckCandidates.Designer.cs">
       <DependentUpon>CheckCandidates.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClienteExpTrab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClienteExpTrab.Designer.cs">
+      <DependentUpon>ClienteExpTrab.cs</DependentUpon>
+    </Compile>
     <Compile Include="ComboBoxItem.cs" />
+    <Compile Include="ClienteHabAca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClienteHabAca.Designer.cs">
+      <DependentUpon>ClienteHabAca.cs</DependentUpon>
+    </Compile>
     <Compile Include="Habilitacao.cs" />
     <Compile Include="LangLevels.cs" />
     <Compile Include="MoreInfo.cs">
@@ -108,11 +120,11 @@
     <Compile Include="register_client.Designer.cs">
       <DependentUpon>register_client.cs</DependentUpon>
     </Compile>
-    <Compile Include="lang_level.cs">
+    <Compile Include="ClienteLangLevel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="lang_level.Designer.cs">
-      <DependentUpon>lang_level.cs</DependentUpon>
+    <Compile Include="ClienteLangLevel.Designer.cs">
+      <DependentUpon>ClienteLangLevel.cs</DependentUpon>
     </Compile>
     <Compile Include="lista_ofertas.cs">
       <SubType>Form</SubType>
@@ -162,6 +174,12 @@
     <EmbeddedResource Include="CheckCandidates.resx">
       <DependentUpon>CheckCandidates.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ClienteExpTrab.resx">
+      <DependentUpon>ClienteExpTrab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClienteHabAca.resx">
+      <DependentUpon>ClienteHabAca.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MoreInfo.resx">
       <DependentUpon>MoreInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -189,8 +207,8 @@
     <EmbeddedResource Include="register_client.resx">
       <DependentUpon>register_client.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="lang_level.resx">
-      <DependentUpon>lang_level.cs</DependentUpon>
+    <EmbeddedResource Include="ClienteLangLevel.resx">
+      <DependentUpon>ClienteLangLevel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="lista_ofertas.resx">
       <DependentUpon>lista_ofertas.cs</DependentUpon>

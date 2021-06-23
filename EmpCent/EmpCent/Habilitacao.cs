@@ -6,20 +6,28 @@ using System.Threading.Tasks;
 
 namespace EmpCent
 {
-    class Habilitacao
+    public class Habilitacao
     {
-        private String nivel, ano, curso, local, nota;
-        public Habilitacao(String nivel, String ano, String curso, String local,  String nota) {
+        public String nivel, ano, curso, local, nota, nome;
+        public Habilitacao(String nome, String ano, String curso, String local, String nota, String nivel)
+        {
             this.nivel = nivel;
             this.ano = ano;
             this.curso = curso;
             this.local = local;
             this.nota = nota;
+            this.nome = nome;
 
         }
 
-        public String getNivel() {
+        public String getNivel()
+        {
             return this.nivel;
+
+        }
+        public String getNome()
+        {
+            return this.nome;
         }
     }
 }
