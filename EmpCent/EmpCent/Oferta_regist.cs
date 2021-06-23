@@ -61,17 +61,17 @@ namespace EmpCent
                 String local = textBox3.Text;
                 String duracao = textBox4.Text;
                 String observacoes = textBox5.Text;
-                String local = textBox6.Text;
-                String local = comboBox1.SelectedItem;
-                String local = (Habilitacao)comboBox2.SelectedItem;
+                String l1 = textBox6.Text;
+                String l2 = comboBox1.SelectedItem.ToString();
+                Habilitacao l3 = (Habilitacao)comboBox2.SelectedItem;
 
 
 
                 SqlCommand cmd = new SqlCommand("EXEC insertEstagio @nome, @local, @descricao", Connection.cn);
                 cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@nome", nome);
+                cmd.Parameters.AddWithValue("@nome",l1);
                 cmd.Parameters.AddWithValue("@local", local);
-                cmd.Parameters.AddWithValue("@descricao", descricao);
+                cmd.Parameters.AddWithValue("@descricao", l2);
                 try
                 {
                     cmd.ExecuteNonQuery();
