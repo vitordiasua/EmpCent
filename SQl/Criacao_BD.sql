@@ -12,7 +12,7 @@ create table projeto.Pessoa(
 	email				nvarchar(254) not null
 
 	Constraint PK_Pessoa
-		primary key (numRegisto)
+		primary key (numRegisto),
 		
 	Constraint Un_Email
 		Unique (email));

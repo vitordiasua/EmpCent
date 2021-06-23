@@ -438,12 +438,3 @@ insert into projeto.Desempregado_Candidato_Oferta (idOferta, numRegisto) values
 (2, 12),
 (3, 12),
 (1, 3);
-
-
-select * from projeto.Habilitacoes_Academicas
-select projeto.Desempregado.numRegisto, nomeCategoria, idade,  from projeto.Desempregado join projeto.Pessoa on projeto.Pessoa.numRegisto = projeto.Desempregado.numRegisto join projeto.Area_Habilitacoes on projeto.Desempregado.numRegisto = projeto.Area_Habilitacoes.numRegisto join projeto.Categoria_Emprego on projeto.Area_Habilitacoes.idCategoria = projeto.Categoria_Emprego.idCategoria
-select * from projeto.Oferta
-
---select * from projeto.Lingua where nomeLingua = 'Japonês'
-
---select * from projeto.Nivel_Habilitacao

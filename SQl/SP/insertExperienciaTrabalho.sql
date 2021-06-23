@@ -1,4 +1,4 @@
-alter proc insertExperienciaTrabalho(
+create proc insertExperienciaTrabalho(
 	@numRegisto					int,
 	@titulo						varchar(80),
 	@dataInicio					date,
@@ -16,7 +16,7 @@ as
 			end
 		else
 			begin
-				raiserror('Desempregado não existe',16,1)
+				raiserror('Desempregado nï¿½o existe',16,1)
 			end
 	end
 

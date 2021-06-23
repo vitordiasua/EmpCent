@@ -21,7 +21,6 @@ namespace EmpCent
         public static void startConnection()
         {
             cn = new SqlConnection("data source= tcp:mednat.ieeta.pt\\SQLSERVER,8101;initial catalog= p6g5; uid=p6g5; password=1241768583@BD");
-
         }
 
 

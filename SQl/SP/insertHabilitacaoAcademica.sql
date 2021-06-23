@@ -19,17 +19,15 @@ as
 					end
 				else
 					begin
-						raiserror('Nivel de Habilitação não existe',16,2)
+						raiserror('Nivel de Habilitaï¿½ï¿½o nï¿½o existe',16,2)
 					end
 			end
 		else
 			begin
-				raiserror('Desempregado não existe',16,1)
+				raiserror('Desempregado nï¿½o existe',16,1)
 			end
 	end
 
 --Example
 --exec insertHabilitacaoAcademica 11, 'Curso teste', 'uni teste', 7, 2003, 10
 
-select * from projeto.Desempregado
-select * from projeto.Habilitacoes_Academicas

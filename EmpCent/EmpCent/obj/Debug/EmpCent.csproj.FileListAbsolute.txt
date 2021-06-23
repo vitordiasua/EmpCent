@@ -24,3 +24,29 @@ C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug
 C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.HomeComp.resources
 C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.MyListComp.resources
 C:\Users\vfrd0\OneDrive\Área de Trabalho\Proj\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.register_comp.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\bin\Debug\EmpCent.exe.config
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\bin\Debug\EmpCent.exe
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\bin\Debug\EmpCent.pdb
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.csproj.AssemblyReference.cache
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.CheckCandidates.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.MoreInfo.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.MyListComp.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.Mylist_client.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.register_comp.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.HomeComp.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.Home.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.HomeClient.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.Oferta_resposta.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.register_client.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.lang_level.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.lista_ofertas.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.MyRecruiters.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.Oferta_regist.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.Properties.Resources.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.HomeRecrutador.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.Mylist_rec.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.register_recruiter.resources
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.csproj.GenerateResource.cache
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.csproj.CoreCompileInputs.cache
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.exe
+D:\Cenas da Ua\2º Ano\2º Semestre\BD\EmpCent\EmpCent\EmpCent\obj\Debug\EmpCent.pdb

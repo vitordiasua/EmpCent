@@ -25,17 +25,17 @@ as
 						end
 					else
 						begin
-							RAISERROR('Nivel de habilitacao não existe',16,3);
+							RAISERROR('Nivel de habilitacao nao existe',16,3);
 						end
 				end
 			else
 				begin
-					RAISERROR('Recrutador não existe',16,2);
+					RAISERROR('Recrutador nao existe',16,2);
 				end
 		end
 	else
 		begin
-			RAISERROR('Empresa não existe',16,1);
+			RAISERROR('Empresa nao existe',16,1);
 		end
 	end
 
