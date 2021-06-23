@@ -9,7 +9,7 @@ create table projeto.Pessoa(
 	telefone			char(9),
 	sexo				char(1),
 	idade				as (0 + Convert(Char(8),getdate(),112) - Convert(Char(8),dataNascimento,112)) / 10000,
-	email				nvarchar(254)
+	email				nvarchar(254) Unique not null
 
 	Constraint PK_Pessoa
 		primary key (numRegisto));
