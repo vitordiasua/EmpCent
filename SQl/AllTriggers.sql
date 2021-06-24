@@ -74,7 +74,8 @@ as
 		if exists(select numRegisto from projeto.Recrutador where not numRegisto = @numRegisto and idEmpresa = @idEmpresa)
 			begin
 				declare @tempRecrutador as int;
-				select @tempRecrutador=numRegisto from projeto.Recrutador where not numRegisto = @numRegisto and idEmpresa = @idEmpresa;
+				select @tempRecrutador=numRegisto from projeto.Recrutador 
+				where not numRegisto = @numRegisto and idEmpresa = @idEmpresa;
 
 				update projeto.Oferta set idRecrutador = @tempRecrutador where idRecrutador = @numRegisto
 			end
