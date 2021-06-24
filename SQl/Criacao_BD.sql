@@ -1,7 +1,10 @@
---create schema projeto;
+aaaaa;
+
+
+create schema projeto;
 
 create table projeto.Pessoa(
-	numRegisto			int Identity(1,1), --talvez por default 'user' para quando se apaga um user da base de dados dar-se update para o default para continuar com cenas guardadas, nao sei o quao util seria
+	numRegisto			int Identity(1,1),
 	primeiroNome		varchar(20),
 	nomesMeio			varchar(50),
 	ultimoNome			varchar(30),
