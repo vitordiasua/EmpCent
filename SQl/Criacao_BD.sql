@@ -55,11 +55,13 @@ create table projeto.Nivel_Lingua(
 
 create table projeto.Empresa(
 	idEmpresa			int Identity(1,1),
-	nome				varchar(50),
+	nome				varchar(50) not null,
 	localizacao			varchar(30),
 	descricao			varchar(100),
 	Constraint PK_Empresa
-		primary key (idEmpresa))
+		primary key (idEmpresa),
+	Constraint Un_Nome_Empresa
+		Unique (nome))
 
 create table projeto.Recrutador(
 	numRegisto			int,
