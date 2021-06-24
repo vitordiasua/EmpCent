@@ -32,6 +32,8 @@
             this.label17 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listBox1
@@ -40,7 +42,7 @@
             this.listBox1.ItemHeight = 16;
             this.listBox1.Location = new System.Drawing.Point(46, 67);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(703, 500);
+            this.listBox1.Size = new System.Drawing.Size(703, 452);
             this.listBox1.TabIndex = 0;
             // 
             // label17
@@ -72,11 +74,36 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Nome",
+            "Data",
+            "Vagas"});
+            this.comboBox1.Location = new System.Drawing.Point(135, 548);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 24);
+            this.comboBox1.TabIndex = 109;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(43, 551);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 17);
+            this.label1.TabIndex = 110;
+            this.label1.Text = "Ordenar por";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // lista_ofertas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1212, 598);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label17);
@@ -84,6 +111,7 @@
             this.Name = "lista_ofertas";
             this.Text = "lista_ofertas";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -93,5 +121,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label1;
     }
 }

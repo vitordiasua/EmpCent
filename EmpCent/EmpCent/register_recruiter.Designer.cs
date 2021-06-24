@@ -194,6 +194,7 @@
             this.button6.TabIndex = 108;
             this.button6.Text = "Submeter Dados";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // textBox6
             // 
@@ -260,6 +261,7 @@
             this.Controls.Add(this.label1);
             this.Name = "register_recruiter";
             this.Text = "register_recruiter";
+            this.Load += new System.EventHandler(this.register_recruiter_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

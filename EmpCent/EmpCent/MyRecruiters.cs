@@ -82,8 +82,7 @@ namespace EmpCent
 
                 if (!Connection.verifySGBDConnection())
                     return;
-
-                SqlCommand cmd = new SqlCommand("DELETE FROM projeto.Recrutador WHERE numRegisto = @idRec AND idEmpresa = @idEmp", Connection.cn);
+                SqlCommand cmd = new SqlCommand("DELETE FROM projeto.Recrutador WHERE numRegisto = @idRec", Connection.cn);
                 cmd.Parameters.AddWithValue("@idRec", r.getId());
                 cmd.Parameters.AddWithValue("@idEmp", id);
                 try

@@ -16,12 +16,13 @@ namespace EmpCent
         public String idEmpresa;
         public String idRecrt;
         public String nivelHabil;
+        public String tipo;
 
         public Oferta()
         {
         }
 
-        public Oferta(String id, String titulo, String vagas, String localizacao, String data, String idEmpresa, String idRecrt, String nivelHabil) {
+        public Oferta(String id, String titulo, String vagas, String localizacao, String data, String idEmpresa, String idRecrt, String nivelHabil, String tipo = "") {
             this.id = id.ToString();
             this.titulo = titulo;
             this.vagas = vagas.ToString();
@@ -30,6 +31,7 @@ namespace EmpCent
             this.idEmpresa = idEmpresa.ToString();
             this.idRecrt = idRecrt.ToString();
             this.nivelHabil = nivelHabil.ToString();
+            this.tipo = tipo;
         }
 
         public String getId() {
@@ -37,7 +39,7 @@ namespace EmpCent
         }
 
         public override String ToString() {
-            return titulo + "".PadRight(50 - titulo.Length) + vagas + "".PadRight(20 - vagas.Length) + localizacao + "".PadRight(30 - localizacao.Length);
+            return titulo + "".PadRight(50 - titulo.Length) + vagas + "".PadRight(20 - vagas.Length) + localizacao + "".PadRight(30 - localizacao.Length) + data;
         }
     }
 }

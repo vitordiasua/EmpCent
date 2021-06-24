@@ -27,6 +27,8 @@ namespace EmpCent
         private void button2_Click(object sender, EventArgs e)
         {
             String email = Interaction.InputBox("Insira o seu e-mail.", "Login", "example@example.com");
+            register_recruiter client = new register_recruiter(email);
+            client.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)

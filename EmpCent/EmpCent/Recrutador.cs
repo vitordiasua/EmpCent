@@ -11,6 +11,7 @@ namespace EmpCent
         private String id, pNome, mNome, uNome, data, tele, sexo, idade, email, metodo;
 
         public Recrutador(String id, String pNome, String mNome, String uNome, String data, String tele, String sexo, String idade, String email, String metodo) {
+            this.id = id;
             this.pNome = pNome;
             this.mNome = mNome;
             this.uNome = uNome;

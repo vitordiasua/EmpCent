@@ -23,7 +23,7 @@ namespace EmpCent
 
         public ClienteUpdate()
         {
-            email = Interaction.InputBox("Insira o seu e-mail.", "Login");
+            email = Interaction.InputBox("Insira o seu e-mail.", "Login", "lorenzodferrari@gmail.com");
 
             InitializeComponent();
             //Connection.cn.Open();
