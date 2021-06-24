@@ -182,7 +182,7 @@ namespace EmpCent
             
 
             foreach(Habilitacao hab in habl){
-                cmd = new SqlCommand("exec insertUpdateHabilitacaoAcademica @numRegisto, @nomeCurso, @estabelecimentoEnsino, @idNivelHabilitacao, @anoConclusao, @notaFinal", Connection.cn);
+                cmd = new SqlCommand("exec insertHabilitacaoAcademica @numRegisto, @nomeCurso, @estabelecimentoEnsino, @idNivelHabilitacao, @anoConclusao, @notaFinal", Connection.cn);
                 cmd.Parameters.AddWithValue("@numRegisto", numRegisto);
                 cmd.Parameters.AddWithValue("@nomeCurso", hab.curso);
                 cmd.Parameters.AddWithValue("@estabelecimentoEnsino", hab.local);
@@ -196,7 +196,7 @@ namespace EmpCent
             SqlParameter dataInicio, dataFim;
             foreach (ExpTrb exp in exprTrb)
             {
-                cmd = new SqlCommand("exec insertUpdateExperienciaTrabalho @numRegisto, @titulo, @dataInicio, @dataFim, @localizacao, @empresa", Connection.cn);
+                cmd = new SqlCommand("exec insertExperienciaTrabalho @numRegisto, @titulo, @dataInicio, @dataFim, @localizacao, @empresa", Connection.cn);
                 cmd.Parameters.AddWithValue("@numRegisto", numRegisto);
                 cmd.Parameters.AddWithValue("@titulo", exp.titulo);
                 dataInicio = cmd.Parameters.Add("@dataInicio", SqlDbType.Date);
