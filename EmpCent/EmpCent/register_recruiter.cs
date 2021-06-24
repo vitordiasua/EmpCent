@@ -14,6 +14,7 @@ namespace EmpCent
     public partial class register_recruiter : Form
     {
         private String idRec = null;
+        private bool atualizar = false;
 
         public register_recruiter(String email = null)
         {
@@ -29,7 +30,9 @@ namespace EmpCent
                     return;
 
                 SqlCommand cmd = new SqlCommand("SELECT Pessoa.numRegisto as numRegisto, primeiroNome, nomesMeio, ultimoNome, dataNascimento, telefone, sexo, email, metodoDeSelecao, idEmpresa " + 
-                    "FROM projeto.Pessoa JOIN projeto.Recrutador ON Pessoa.numRegisto = Recrutador.numRegisto", Connection.cn);
+                    "FROM projeto.Pessoa JOIN projeto.Recrutador ON Pessoa.numRegisto = Recrutador.numRegisto " +
+                    "WHERE email = @email", Connection.cn);
+                cmd.Parameters.AddWithValue("@email", email);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -38,7 +41,8 @@ namespace EmpCent
                     String primeiroNome = reader["primeiroNome"].ToString();
                     String nomesMeio = reader["nomesMeio"].ToString();
                     String ultimoNome = reader["ultimoNome"].ToString();
-                    dateTimePicker1.Value = (DateTime)reader["dataNascimento"].ToString();
+                    dateTimePicker1.Value = (DateTime)reader["dataNascimento"];
+                    String emailAns = reader["email"].ToString();
                     String telefone = reader["telefone"].ToString();
                     String sexo = reader["sexo"].ToString();
                     String metodoDeSelecao = reader["metodoDeSelecao"].ToString();
@@ -54,6 +58,7 @@ namespace EmpCent
                     comboBox3.SelectedIndex = Int32.Parse(idEmpresa);
 
                     button6.Text = "Atualizar";
+                    atualizar = true;
                 }
   
                 Connection.cn.Close();
@@ -85,7 +90,7 @@ namespace EmpCent
             if (!Connection.verifySGBDConnection())
                 return;
 
-            if (idRec == null)
+            if (atualizar == false)
             {
 
                 int numRegisto = 0;
@@ -120,8 +125,10 @@ namespace EmpCent
                     MessageBox.Show(ex.Message);
                 }
             }
-            else { 
-            
+            else {
+
+
+
             }
 
             Connection.cn.Close();

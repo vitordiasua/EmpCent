@@ -20,11 +20,30 @@ namespace EmpCent
             
             InitializeComponent();
 
+            if (!Connection.verifySGBDConnection())
+                return;
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.Categoria_Emprego ", Connection.cn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            comboBox2.Items.Clear();
+
+            while (reader.Read())
+            {
+                String id = reader["idCategoria"].ToString();
+                String cat = reader["nomeCategoria"].ToString();
+                ComboBoxItem cb = new ComboBoxItem(id, cat);
+
+                comboBox2.Items.Add(cb);
+            }
+
+            Connection.cn.Close();
+            //Connection.tableIndex = 0;
+
             loadOfertas();
 
         }
 
-        public void loadOfertas(String op = "") {
+        public void loadOfertas(String op = null, String category = null) {
             if (ent.Equals("cliente"))
             {
                 button2.Text = "Candidatar a Oferta";
@@ -35,12 +54,18 @@ namespace EmpCent
             if (!Connection.verifySGBDConnection())
                 return;
 
+            String whr = "";
+            if (category != null)
+            {
+                whr = "JOIN projeto.Area_Oferta ON Oferta.idOferta = Area_Oferta.idOferta WHERE idCategoria = " + category;
+            }
+
             String order = "";
-            if (!op.Equals("")) {
+            if (op != null) {
                 order = "ORDER BY " + op;
             }
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.Oferta " + order, Connection.cn);
+            SqlCommand cmd = new SqlCommand("SELECT Oferta.idOferta as idOferta, titulo, numVagas, localizacao, dataPublicacao, idEmpresa,idRecrutador, nivelHabilitacao FROM projeto.Oferta " + whr + order, Connection.cn);
             SqlDataReader reader = cmd.ExecuteReader();
             listBox1.Items.Clear();
 
@@ -60,7 +85,7 @@ namespace EmpCent
             }
 
             Connection.cn.Close();
-            Connection.tableIndex = 0;
+            //Connection.tableIndex = 0;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -98,21 +123,96 @@ namespace EmpCent
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+         /*   String ordem = (String)comboBox1.SelectedItem;
+            if (comboBox1.SelectedIndex < 0)
+            {
+                switch (ordem)
+                {
+                    case "Nome":
+                        loadOfertas("titulo");
+                        break;
+                    case "Data":
+                        loadOfertas("dataPublicacao");
+                        break;
+                    case "Vagas":
+                        loadOfertas("numVagas");
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else {
+                ComboBoxItem cb = (ComboBoxItem)comboBox2.SelectedItem;
+                switch (ordem)
+                {
+                    case "Nome":
+                        loadOfertas("titulo", cb.getId());
+                        break;
+                    case "Data":
+                        loadOfertas("dataPublicacao", cb.getId());
+                        break;
+                    case "Vagas":
+                        loadOfertas("numVagas", cb.getId());
+                        break;
+                    default:
+                        break;
+                }
+            }*/
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            /*ComboBoxItem cb = (ComboBoxItem)comboBox2.SelectedItem;
+
+            if (comboBox1.SelectedIndex > -1)
+            {
+                cb = (ComboBoxItem)comboBox2.SelectedItem;
+                loadOfertas(null, cb.getId());
+            }
+            else
+            {
+                String ordem = (String)comboBox1.SelectedItem;
+                switch (ordem)
+                {
+                    case "Nome":
+                        loadOfertas("titulo", cb.getId());
+                        break;
+                    case "Data":
+                        loadOfertas("dataPublicacao", cb.getId());
+                        break;
+                    case "Vagas":
+                        loadOfertas("numVagas", cb.getId());
+                        break;
+                    default:
+                        break;
+                }
+            }*/
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+           
             String ordem = (String)comboBox1.SelectedItem;
-            switch (ordem) {
+            ComboBoxItem cb = (ComboBoxItem)comboBox2.SelectedItem;
+            String ans = null;
+            switch (ordem)
+            {
                 case "Nome":
-                    loadOfertas("titulo");
+                    ans = "titulo";
                     break;
                 case "Data":
-                    loadOfertas("dataPublicacao");
+                    ans = "dataPublicacao";
                     break;
                 case "Vagas":
-                    loadOfertas("numVagas");
+                    ans = "numVagas";
                     break;
                 default:
                     break;
-
             }
+            if(cb != null)
+                loadOfertas(ans, cb.getId());
+            else
+                loadOfertas(ans, null);
         }
     }
 }

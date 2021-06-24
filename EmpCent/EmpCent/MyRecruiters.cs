@@ -24,11 +24,11 @@ namespace EmpCent
             loadRecruiters();
         }
 
-        public void loadRecruiters() {
+        public void loadRecruiters(String search = null) {
             if (!Connection.verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.RecolherRecrutadores(\'" + nome + "\')", Connection.cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.RecolherRecrutadores(\'" + nome + "\')" + search, Connection.cn);
             SqlDataReader reader = cmd.ExecuteReader();
 
             listBox1.Items.Clear();
@@ -98,6 +98,17 @@ namespace EmpCent
 
                 loadRecruiters();
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            String nome = textBox1.Text;
+            loadRecruiters("WHERE primeiroNome + \' \' + nomesMeio + \' \' + ultimoNome LIKE \'%" + nome + "%\'");
         }
     }
 }

@@ -13,15 +13,23 @@ namespace EmpCent
 {
     public partial class CheckCandidates : Form
     {
+        private String id;
+
         public CheckCandidates(String idOferta)
         {
             InitializeComponent();
 
+            id = idOferta;
+
+            loadCandidates();
+        }
+
+        public void loadCandidates(String op = null) {
             if (!Connection.verifySGBDConnection())
                 return;
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.RecolherCandidatosDeUmaOferta( @idOferta )", Connection.cn);
-            cmd.Parameters.AddWithValue("@idOferta", Int32.Parse(idOferta));
+            SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.RecolherCandidatosDeUmaOferta( @idOferta ) " + op, Connection.cn);
+            cmd.Parameters.AddWithValue("@idOferta", Int32.Parse(id));
             SqlDataReader reader = cmd.ExecuteReader();
             listBox1.Items.Clear();
 
@@ -47,7 +55,7 @@ namespace EmpCent
             }
 
             Connection.cn.Close();
-            Connection.tableIndex = 0; 
+            Connection.tableIndex = 0;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -62,6 +70,12 @@ namespace EmpCent
                 MoreInfo mi = new MoreInfo("candidato", cand.getId(), cand);
                 mi.ShowDialog();
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            String nome = textBox1.Text;
+            loadCandidates("WHERE primeiroNome + \' \' + nomesMeio + \' \' + ultimoNome LIKE \'%" + nome + "%\'");
         }
     }
 }
