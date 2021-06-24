@@ -38,7 +38,8 @@ namespace EmpCent
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            ClienteUpdate client = new ClienteUpdate();
+            client.ShowDialog();
         }
 
         private void clientToolStripMenuItem_Click(object sender, EventArgs e)

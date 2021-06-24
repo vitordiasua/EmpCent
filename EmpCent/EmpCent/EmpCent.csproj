@@ -60,11 +60,11 @@
     <Compile Include="ClienteExpTrab.Designer.cs">
       <DependentUpon>ClienteExpTrab.cs</DependentUpon>
     </Compile>
-    <Compile Include="ClientUpdate.cs">
+    <Compile Include="ClienteUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ClientUpdate.Designer.cs">
-      <DependentUpon>ClientUpdate.cs</DependentUpon>
+    <Compile Include="ClienteUpdate.Designer.cs">
+      <DependentUpon>ClienteUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="ComboBoxItem.cs" />
     <Compile Include="ClienteHabAca.cs">
@@ -186,8 +186,8 @@
     <EmbeddedResource Include="ClienteHabAca.resx">
       <DependentUpon>ClienteHabAca.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ClientUpdate.resx">
-      <DependentUpon>ClientUpdate.cs</DependentUpon>
+    <EmbeddedResource Include="ClienteUpdate.resx">
+      <DependentUpon>ClienteUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MoreInfo.resx">
       <DependentUpon>MoreInfo.cs</DependentUpon>

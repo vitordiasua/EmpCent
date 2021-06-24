@@ -1,7 +1,7 @@
 ﻿
 namespace EmpCent
 {
-    partial class ClientUpdate
+    partial class ClienteUpdate
     {
         /// <summary>
         /// Required designer variable.
@@ -80,6 +80,7 @@ namespace EmpCent
             this.button8.TabIndex = 122;
             this.button8.Text = "Remover Habilitação";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click_1);
             // 
             // button7
             // 
@@ -89,6 +90,7 @@ namespace EmpCent
             this.button7.TabIndex = 121;
             this.button7.Text = "Remover Experiência";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // listBox3
             // 
@@ -116,6 +118,7 @@ namespace EmpCent
             this.button2.TabIndex = 118;
             this.button2.Text = "Remover Língua";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // listBox1
             // 
@@ -132,8 +135,9 @@ namespace EmpCent
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(242, 63);
             this.button6.TabIndex = 116;
-            this.button6.Text = "Registar";
+            this.button6.Text = "Atualizar";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click_1);
             // 
             // button5
             // 
@@ -143,6 +147,7 @@ namespace EmpCent
             this.button5.TabIndex = 115;
             this.button5.Text = "Adicionar Experiência";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
             // 
             // label30
             // 
@@ -161,6 +166,7 @@ namespace EmpCent
             this.button4.TabIndex = 113;
             this.button4.Text = "Adicionar Habilitação";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
             // label19
             // 
@@ -216,6 +222,7 @@ namespace EmpCent
             this.button3.TabIndex = 107;
             this.button3.Text = "Adicionar Língua";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // comboBox2
             // 
@@ -428,7 +435,7 @@ namespace EmpCent
             this.label1.TabIndex = 79;
             this.label1.Text = "Primeiro Nome";
             // 
-            // ClientUpdate
+            // ClienteUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -474,7 +481,7 @@ namespace EmpCent
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.Name = "ClientUpdate";
+            this.Name = "ClienteUpdate";
             this.Text = "Atualizar Cliente";
             this.Load += new System.EventHandler(this.ClientUpdate_Load);
             this.ResumeLayout(false);

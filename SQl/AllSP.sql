@@ -60,6 +60,26 @@ as
 	end
 go
 
+create proc updatePessoa(
+			@primeiroNome				varchar(20),
+			@nomesMeio					varchar(50),
+			@ultimoNome					varchar(30),
+			@dataNascimento				date,
+			@telefone					char(9),
+			@sexo						char(1),
+			@oldemail					nvarchar(254),
+			@email						nvarchar(254),
+			@numRegisto					int OUTPUT)
+as
+	begin
+	select @numRegisto = numRegisto from projeto.Pessoa where email=@oldemail;
+	begin transaction
+			update [projeto].[Pessoa] set primeiroNome = @primeiroNome, nomesMeio = @nomesMeio, ultimoNome = @ultimoNome, dataNascimento = @dataNascimento, telefone = @telefone, sexo = @sexo, email = @email
+			where numRegisto = @numRegisto;
+	commit;
+	end
+go
+
 create proc insertDesempregado(
 			@primeiroNome				varchar(20),
 			@nomesMeio					varchar(50),
@@ -82,6 +102,34 @@ as
 
 		insert into [projeto].[Desempregado] (numRegisto, idLinguaMaterna, rua, codigoPostal, localidade, descricao, idNacionalidade)
 			values (@numRegisto, @idLinguaMaterna, @rua, @codigoPostal, @localidade, @descricao, @idNacionalidade)
+	commit;
+	end
+go
+
+create proc updateDesempregado(
+			@primeiroNome				varchar(20),
+			@nomesMeio					varchar(50),
+			@ultimoNome					varchar(30),
+			@dataNascimento				date,
+			@telefone					char(9),
+			@sexo						char(1),
+			@email						nvarchar(254),
+			@idLinguaMaterna			smallint,
+			@rua						varchar(30),
+			@codigoPostal				nchar(8),
+			@localidade					varchar(30),
+			@descricao					varchar(200),
+			@idNacionalidade			smallint,
+			@oldemail					nvarchar(254),
+			@numRegisto					int OUTPUT)
+as
+	begin
+	begin transaction
+		exec updatePessoa @primeiroNome, @nomesMeio, @ultimoNome, @dataNascimento, @telefone, @sexo, @oldemail, @email, @numRegisto output;
+
+		update [projeto].[Desempregado] 
+		set	idLinguaMaterna = @idLinguaMaterna, rua = @rua, codigoPostal = @codigoPostal, localidade = @localidade, descricao = @descricao, idNacionalidade = @idNacionalidade
+		where numRegisto = @numRegisto
 	commit;
 	end
 go
@@ -177,6 +225,49 @@ as
 	end
 go
 
+create proc insertUpdateExperienciaTrabalho(
+	@numRegisto					int,
+	@titulo						varchar(80),
+	@dataInicio					date,
+	@dataFim					date,
+	@localizacao				varchar(30),
+	@empresa					varchar(80),
+	@idDados					int = null)
+as
+	begin
+	set nocount on;
+	if @idDados is null
+		begin
+			if exists(select numRegisto from [projeto].[Desempregado] where numRegisto = @numRegisto)
+				begin
+					begin transaction
+						insert into [projeto].[Experiencias_Trabalho] (numRegisto, titulo, dataFim, dataInicio, localizacao, empresa)
+						values (@numRegisto, @titulo, @dataFim, @dataInicio, @localizacao, @empresa)
+					commit
+				end
+			else
+				begin
+					raiserror('Desempregado nao existe',16,1)
+				end
+		end
+	else
+		begin
+			if exists(select numRegisto from [projeto].[Desempregado] where numRegisto = @numRegisto)
+				begin
+					begin transaction
+						update [projeto].[Experiencias_Trabalho]
+						set  titulo = @titulo, dataFim= @dataFim, dataInicio=@dataInicio, localizacao=@localizacao, empresa=@empresa
+						where numRegisto = @numRegisto and idDados = @idDados
+					commit
+				end
+			else
+				begin
+					raiserror('Desempregado nao existe',16,1)
+				end
+		end
+	end
+go
+
 create proc insertEstagio(
 	@titulo					varchar(40),
 	@numVagas				smallint,
@@ -201,34 +292,60 @@ as
 	end
 go
 
-create proc insertHabilitacaoAcademica(
+create proc insertUpdateHabilitacaoAcademica(
 		@numRegisto				int,
 		@nomeCurso				varchar(150),
 		@estabelecimentoEnsino	varchar(200),
 		@idNivelHabilitacao		smallint,
 		@anoConclusao			smallint,
-		@notaFinal				smallint)
+		@notaFinal				smallint,
+		@idDados				int = null)
 as
-	set nocount on
 	begin
-		if exists(select numRegisto from [projeto].[Desempregado] where numRegisto = @numRegisto)
-			begin
-				if exists(select idNivel from [projeto].[Nivel_Habilitacao] where idNivel = @idNivelHabilitacao)
+	set nocount on
+	if @idDados is null
+		begin
+			if exists(select numRegisto from [projeto].[Desempregado] where numRegisto = @numRegisto)
+				begin
+					if exists(select idNivel from [projeto].[Nivel_Habilitacao] where idNivel = @idNivelHabilitacao)
+						begin
+							begin transaction
+								insert into [projeto].[Habilitacoes_Academicas] (numRegisto, nomeCurso, estabelecimentoEnsino, idNivelHabilitacao, anoConclusao, notaFinal)
+								values (@numRegisto, @nomeCurso, @estabelecimentoEnsino, @idNivelHabilitacao, @anoConclusao, @notaFinal)
+							commit
+						end
+					else
+						begin
+							raiserror('Nivel de Habilitacao nao existe',16,2)
+						end
+				end
+			else
+				begin
+					raiserror('Desempregado nao existe',16,1)
+				end
+		end
+	else
+		begin
+			if exists(select numRegisto from [projeto].[Desempregado] where numRegisto = @numRegisto)
 					begin
-						begin transaction
-							insert into [projeto].[Habilitacoes_Academicas] (numRegisto, nomeCurso, estabelecimentoEnsino, idNivelHabilitacao, anoConclusao, notaFinal)
-							values (@numRegisto, @nomeCurso, @estabelecimentoEnsino, @idNivelHabilitacao, @anoConclusao, @notaFinal)
-						commit
+						if exists(select idNivel from [projeto].[Nivel_Habilitacao] where idNivel = @idNivelHabilitacao)
+							begin
+								begin transaction
+									update [projeto].[Habilitacoes_Academicas] 
+									set nomeCurso = @nomeCurso, estabelecimentoEnsino = @estabelecimentoEnsino, idNivelHabilitacao = @idNivelHabilitacao, anoConclusao = @anoConclusao, notaFinal = @notaFinal
+									where numRegisto = @numRegisto and idDados = @idDados
+								commit
+							end
+						else
+							begin
+								raiserror('Nivel de Habilitacao nao existe',16,2)
+							end
 					end
 				else
 					begin
-						raiserror('Nivel de Habilitacao nao existe',16,2)
+						raiserror('Desempregado nao existe',16,1)
 					end
-			end
-		else
-			begin
-				raiserror('Desempregado nao existe',16,1)
-			end
+		end
 	end
 go
 
@@ -247,6 +364,35 @@ as
 			insert into [projeto].[Desempregado_Fala_Lingua] (numRegisto, idLingua, nivelLeitura, nivelEscrita, nivelOral)
 			values (@numRegisto, @idLingua, @nivelLeitura, @nivelEscrita, @nivelOral)
 		commit;
+	end
+go
+
+create proc insertUpdateFala(
+	@numRegisto				int,
+	@nomeLingua				varchar(30),
+	@nivelLeitura			smallint,
+	@nivelEscrita			smallint,
+	@nivelOral				smallint)
+as
+	begin
+		declare @idLingua int;
+
+		select @idLingua=idLingua from projeto.Lingua where nomeLingua=@nomeLingua;
+		if exists(select * from projeto.Desempregado_Fala_Lingua where numRegisto = @numRegisto and idLingua = @idLingua)
+			begin
+				begin transaction 
+				update [projeto].[Desempregado_Fala_Lingua]
+				set nivelLeitura = @nivelLeitura, nivelEscrita = @nivelEscrita, nivelOral = @nivelOral
+				where numRegisto = @numRegisto and idLingua = @idLingua
+				commit 
+			end
+		else
+			begin
+				begin transaction
+				insert into [projeto].[Desempregado_Fala_Lingua] (numRegisto, idLingua, nivelLeitura, nivelEscrita, nivelOral)
+				values (@numRegisto, @idLingua, @nivelLeitura, @nivelEscrita, @nivelOral)
+				commit;
+			end
 	end
 go
 
