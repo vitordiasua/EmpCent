@@ -63,5 +63,42 @@ namespace EmpCent
                 mi.ShowDialog();
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Recrutador r = (Recrutador)listBox1.SelectedItem;
+            if (r != null) {
+                if (!Connection.verifySGBDConnection())
+                    return;
+                SqlCommand cmd2 = new SqlCommand("SELECT * FROM projeto.Empresa WHERE nome = @nome", Connection.cn);
+                cmd2.Parameters.AddWithValue("@nome", nome);
+                SqlDataReader reader = cmd2.ExecuteReader();
+                String id = null;
+                while (reader.Read())
+                {
+                    id = reader["idEmpresa"].ToString();
+                }
+                Connection.cn.Close();
+
+                if (!Connection.verifySGBDConnection())
+                    return;
+
+                SqlCommand cmd = new SqlCommand("DELETE FROM projeto.Recrutador WHERE numRegisto = @idRec AND idEmpresa = @idEmp", Connection.cn);
+                cmd.Parameters.AddWithValue("@idRec", r.getId());
+                cmd.Parameters.AddWithValue("@idEmp", id);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                Connection.cn.Close();
+
+                loadRecruiters();
+            }
+        }
     }
 }

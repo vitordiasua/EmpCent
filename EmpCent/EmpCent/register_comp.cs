@@ -13,9 +13,36 @@ namespace EmpCent
 {
     public partial class register_comp : Form
     {
-        public register_comp()
+        private String id;
+
+        public register_comp(String empresa = null)
         {
             InitializeComponent();
+
+            if (empresa != null) {
+                if (!Connection.verifySGBDConnection())
+                    return;
+
+                SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.Empresa WHERE nome = @nome", Connection.cn);
+                cmd.Parameters.AddWithValue("@nome", empresa);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    id = reader["idEmpresa"].ToString();
+                    String nome = reader["nome"].ToString();
+                    String localizacao = reader["localizacao"].ToString();
+                    String descricao = reader["descricao"].ToString();
+                    textBox1.Text = nome;
+                    textBox2.Text = localizacao;
+                    textBox3.Text = descricao;
+                }
+
+                Connection.cn.Close();
+                Connection.tableIndex = 0;
+
+                button6.Text = "Alterar";
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -35,6 +62,10 @@ namespace EmpCent
             try
             {
                 cmd.ExecuteNonQuery();
+                MessageBox.Show("Empresa Registada");
+                textBox1.Clear();
+                textBox2.Clear();
+                textBox3.Clear();
             }
             catch (SqlException ex)
             {

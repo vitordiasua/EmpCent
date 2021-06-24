@@ -14,9 +14,10 @@ namespace EmpCent
 {
     public partial class Oferta_regist : Form
     {
+        private String email;
         public Oferta_regist()
         {
-            String email = Interaction.InputBox("Insira o seu e-mail.", "Login", "fdportas@sapo.pt");
+            email = Interaction.InputBox("Insira o seu e-mail.", "Login", "fdportas@sapo.pt");
 
             InitializeComponent();
 
@@ -50,31 +51,50 @@ namespace EmpCent
 
         private void button6_Click(object sender, EventArgs e)
         {
+            if (!Connection.verifySGBDConnection())
+                return;
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.Recrutador JOIN projeto.Pessoa ON Recrutador.numRegisto = Pessoa.numRegisto WHERE email = @email", Connection.cn);
+            cmd.Parameters.AddWithValue("@email", email);
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            reader.Read();
+            String idRecr = reader["numRegisto"].ToString();
+            String idEmpr = reader["idEmpresa"].ToString();
+
+            Connection.cn.Close();
+
+
             if (radioButton1.Checked)
             {
-                DateTime today = DateTime.Today;
+
                 if (!Connection.verifySGBDConnection())
                     return;
+
+                DateTime today = DateTime.Today;
 
                 String titulo = textBox1.Text;
                 String vagas = textBox2.Text;
                 String local = textBox3.Text;
                 String duracao = textBox4.Text;
                 String observacoes = textBox5.Text;
-                String l1 = textBox6.Text;
-                String l2 = comboBox1.SelectedItem.ToString();
-                Habilitacao l3 = (Habilitacao)comboBox2.SelectedItem;
+                ComboBoxItem hab = (ComboBoxItem)comboBox2.SelectedItem;
 
 
 
-                SqlCommand cmd = new SqlCommand("EXEC insertEstagio @nome, @local, @descricao", Connection.cn);
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@nome",l1);
-                cmd.Parameters.AddWithValue("@local", local);
-                cmd.Parameters.AddWithValue("@descricao", l2);
+                SqlCommand cmd2 = new SqlCommand("EXEC insertEstagio @titulo, @vagas, @local, @idEmpresa, @idRecrutador, @habil, @duracao, @obsrv", Connection.cn);
+                cmd2.Parameters.Clear();
+                cmd2.Parameters.AddWithValue("@titulo", titulo);
+                cmd2.Parameters.AddWithValue("@vagas", vagas);
+                cmd2.Parameters.AddWithValue("@local", local);
+                cmd2.Parameters.AddWithValue("@idEmpresa", idEmpr);
+                cmd2.Parameters.AddWithValue("@idRecrutador", idRecr);
+                cmd2.Parameters.AddWithValue("@habil", hab.getId());
+                cmd2.Parameters.AddWithValue("@duracao", duracao);
+                cmd2.Parameters.AddWithValue("@obsrv", observacoes);
                 try
                 {
-                    cmd.ExecuteNonQuery();
+                    cmd2.ExecuteNonQuery();
                 }
                 catch (SqlException ex)
                 {
@@ -83,23 +103,25 @@ namespace EmpCent
 
                 Connection.cn.Close();
             }
-            else if (radioButton2.Checked) {
-                DateTime today = DateTime.Today;
+            else if (radioButton2.Checked)
+            {
                 if (!Connection.verifySGBDConnection())
                     return;
+
+                DateTime today = DateTime.Today;
 
                 String nome = textBox1.Text;
                 String local = textBox2.Text;
                 String descricao = textBox3.Text;
 
-                SqlCommand cmd = new SqlCommand("EXEC insertEmprego @nome, @local, @descricao", Connection.cn);
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@nome", nome);
-                cmd.Parameters.AddWithValue("@local", local);
-                cmd.Parameters.AddWithValue("@descricao", descricao);
+                SqlCommand cmd2 = new SqlCommand("EXEC insertEmprego @nome, @local, @descricao", Connection.cn);
+                cmd2.Parameters.Clear();
+                cmd2.Parameters.AddWithValue("@nome", nome);
+                cmd2.Parameters.AddWithValue("@local", local);
+                cmd2.Parameters.AddWithValue("@descricao", descricao);
                 try
                 {
-                    cmd.ExecuteNonQuery();
+                    cmd2.ExecuteNonQuery();
                 }
                 catch (SqlException ex)
                 {

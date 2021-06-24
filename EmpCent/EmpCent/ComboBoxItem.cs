@@ -15,5 +15,11 @@ namespace EmpCent
         }
 
         public String getId() { return this.id; }
+
+        public override string ToString()
+        {
+            return this.content;
+        }
+
     }
 }

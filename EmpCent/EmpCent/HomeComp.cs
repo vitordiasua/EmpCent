@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -62,6 +63,13 @@ namespace EmpCent
         private void empresaToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            String empresa = Interaction.InputBox("Insira o nome da sua empresa.", "Login", "Techine");
+            register_comp rg = new register_comp(empresa);
+            rg.ShowDialog();
         }
     }
 }
