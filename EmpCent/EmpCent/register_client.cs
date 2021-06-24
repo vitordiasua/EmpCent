@@ -229,17 +229,16 @@ namespace EmpCent
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItems.Count != 0)
+            if (listBox2.SelectedItems.Count != 0)
             {
-                foreach (String s in listBox2.Items)
+                String s = listBox2.SelectedItem.ToString();
+
+                foreach (LangLevels l in langLevels)
                 {
-                    foreach (LangLevels l in langLevels)
+                    if (l.lang.Equals(s))
                     {
-                        if (l.lang.Equals(s))
-                        {
-                            langLevels.Remove(l);
-                            break;
-                        }
+                        langLevels.Remove(l);
+                        break;
                     }
                 }
             }            
@@ -249,15 +248,15 @@ namespace EmpCent
         {
             if (listBox1.SelectedItems.Count != 0)
             {
-                foreach (String s in listBox1.Items)
+                String s = listBox1.SelectedItem.ToString();
+
+                foreach (Habilitacao h in habl)
                 {
-                    foreach (Habilitacao h in habl)
+                    if(h.curso.Equals(s) || h.nome.Equals(s))
                     {
-                        if(h.curso.Equals(s) || h.nome.Equals(s))
-                        {
-                            habl.Remove(h);
-                            break;
-                        }
+                        habl.Remove(h);
+                        listBox1.Items.Remove(s);
+                        break;
                     }
                 }
             }
@@ -265,17 +264,16 @@ namespace EmpCent
 
         private void button7_Click_1(object sender, EventArgs e)
         {
-            if(listBox1.SelectedItems.Count != 0)
+            if(listBox3.SelectedItems.Count != 0)
             {
-                foreach (String s in listBox3.Items)
+                String s = listBox3.SelectedItem.ToString();
+
+                foreach (ExpTrb exp in exprTrb)
                 {
-                    foreach (ExpTrb exp in exprTrb)
+                    if (exp.titulo.Equals(s))
                     {
-                        if (exp.titulo.Equals(s))
-                        {
-                            exprTrb.Remove(exp);
-                            break;
-                        }
+                        exprTrb.Remove(exp);
+                        break;
                     }
                 }
             }

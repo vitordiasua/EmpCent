@@ -11,9 +11,13 @@ namespace EmpCent
     public partial class ClienteUpdate : Form
     {
         private String email;
+        private String numRegisto = "";
         private List<Habilitacao> habl = new List<Habilitacao>();
         private List<ExpTrb> exprTrb = new List<ExpTrb>();
         private List<LangLevels> langLevels = new List<LangLevels>();
+        private List<Habilitacao> starthabl = new List<Habilitacao>();
+        private List<ExpTrb> startexprTrb = new List<ExpTrb>();
+        private List<LangLevels> startlangLevels = new List<LangLevels>();
         private Dictionary<String, String> countries = new Dictionary<string, string>();
         private Dictionary<String, String> languages = new Dictionary<string, string>();
 
@@ -43,7 +47,6 @@ namespace EmpCent
             cmd.Parameters.AddWithValue("@email", email);
 
             SqlDataReader reader = cmd.ExecuteReader();
-            String numRegisto = "";
 
             while (reader.Read())
             {
@@ -90,6 +93,7 @@ namespace EmpCent
 
                 listBox1.Items.Add(h.curso);
                 habl.Add(h);
+                starthabl.Add(h);
             }
 
             Connection.cn.Close();
@@ -111,6 +115,7 @@ namespace EmpCent
 
                 listBox2.Items.Add(l.lang);
                 langLevels.Add(l);
+                startlangLevels.Add(l);
             }
 
             Connection.cn.Close();
@@ -133,6 +138,7 @@ namespace EmpCent
 
                 listBox3.Items.Add(e.titulo);
                 exprTrb.Add(e);
+                startexprTrb.Add(e);
             }
 
             Connection.cn.Close();
@@ -211,15 +217,28 @@ namespace EmpCent
         {
             if (listBox1.SelectedItems.Count != 0)
             {
-                foreach (String s in listBox1.Items)
+                String s = listBox1.SelectedItem.ToString();
+
+                foreach (Habilitacao h in habl)
                 {
-                    foreach (Habilitacao h in habl)
+                    if (h.curso.Equals(s) || h.nome.Equals(s))
                     {
-                        if (h.curso.Equals(s) || h.nome.Equals(s))
+                        habl.Remove(h);
+                        listBox1.Items.Remove(s);
+                        
+
+                        if (starthabl.Contains(h))
                         {
-                            habl.Remove(h);
-                            break;
+                            if (!Connection.verifySGBDConnection())
+                                return;
+
+                            SqlCommand cmd = new SqlCommand("delete from projeto.Habilitacoes_Academicas where numRegisto = @numRegisto and idDados = @idDados", Connection.cn);
+                            cmd.Parameters.AddWithValue("@numRegisto", numRegisto);
+                            cmd.Parameters.AddWithValue("@idDados", h.idDados);
+                            cmd.ExecuteNonQuery();
+                            Connection.cn.Close();
                         }
+                        break;
                     }
                 }
             }
@@ -241,17 +260,27 @@ namespace EmpCent
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItems.Count != 0)
+            if (listBox2.SelectedItems.Count != 0)
             {
-                foreach (String s in listBox2.Items)
+                String s = listBox2.SelectedItem.ToString();
+                foreach (LangLevels l in langLevels)
                 {
-                    foreach (LangLevels l in langLevels)
+                    if (l.lang.Equals(s))
                     {
-                        if (l.lang.Equals(s))
+                        langLevels.Remove(l);
+                        listBox2.Items.Remove(s);
+                        if (startlangLevels.Contains(l))
                         {
-                            langLevels.Remove(l);
-                            break;
+                            if (!Connection.verifySGBDConnection())
+                                return;
+
+                            SqlCommand cmd = new SqlCommand("delete from projeto.Desempregado_Fala_Lingua where numRegisto = @numRegisto and idLingua = @idLingua", Connection.cn);
+                            cmd.Parameters.AddWithValue("@numRegisto", numRegisto);
+                            cmd.Parameters.AddWithValue("@idLingua", l.id);
+                            cmd.ExecuteNonQuery();
+                            Connection.cn.Close();
                         }
+                        break;
                     }
                 }
             }
@@ -273,17 +302,28 @@ namespace EmpCent
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItems.Count != 0)
+            if (listBox3.SelectedItems.Count != 0)
             {
-                foreach (String s in listBox3.Items)
+                String s = listBox3.SelectedItem.ToString();
+                foreach (ExpTrb exp in exprTrb)
                 {
-                    foreach (ExpTrb exp in exprTrb)
+                    if (exp.titulo.Equals(s))
                     {
-                        if (exp.titulo.Equals(s))
+                        exprTrb.Remove(exp);
+                        listBox3.Items.Remove(s);
+                        if (startexprTrb.Contains(exp))
                         {
-                            exprTrb.Remove(exp);
-                            break;
+                            if (!Connection.verifySGBDConnection())
+                                return;
+
+                            SqlCommand cmd = new SqlCommand("delete from projeto.Experiencias_Trabalho where numRegisto = @numRegisto and idDados = @idDados", Connection.cn);
+                            cmd.Parameters.AddWithValue("@numRegisto", numRegisto);
+                            cmd.Parameters.AddWithValue("@idDados", exp.idDados);
+                            Console.WriteLine("dados: " + exp.idDados);
+                            cmd.ExecuteNonQuery();
+                            Connection.cn.Close();
                         }
+                        break;
                     }
                 }
             }
