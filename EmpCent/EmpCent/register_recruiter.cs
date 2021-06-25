@@ -14,10 +14,13 @@ namespace EmpCent
     public partial class register_recruiter : Form
     {
         private String idRec = null;
+        private String oldEmail = null;
         private bool atualizar = false;
 
         public register_recruiter(String email = null)
         {
+            oldEmail = email;
+
             InitializeComponent();
 
             loadEmpresas();
@@ -127,7 +130,29 @@ namespace EmpCent
             }
             else {
 
+                SqlCommand cmd = new SqlCommand("EXEC updateRecrutador @primeiroNome, @nomesMeio, @ultimoNome, @data, @tele, @sexo, @email, @metodoDeSelecao, @idEmpresa, @oldEmail, @idRec", Connection.cn);
+                cmd.Parameters.AddWithValue("@primeiroNome", textBox1.Text);
+                cmd.Parameters.AddWithValue("@nomesMeio", textBox2.Text);
+                cmd.Parameters.AddWithValue("@ultimoNome", textBox3.Text);
+                SqlParameter dataNascimento = cmd.Parameters.Add("@data", SqlDbType.Date);
+                dataNascimento.Value = dateTimePicker1.Value;
+                cmd.Parameters.AddWithValue("@tele", textBox4.Text);
+                cmd.Parameters.AddWithValue("@sexo", comboBox1.SelectedIndex);
+                cmd.Parameters.AddWithValue("@email", textBox5.Text);
+                cmd.Parameters.AddWithValue("@metodoDeSelecao", textBox6.Text);
+                cmd.Parameters.AddWithValue("@idEmpresa", comboBox3.SelectedIndex + 1);
+                cmd.Parameters.AddWithValue("@oldEmail", oldEmail);
+                cmd.Parameters.AddWithValue("@idRec", idRec);
 
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Recrutador Atualizado!");
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
 
             }
 

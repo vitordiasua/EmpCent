@@ -15,9 +15,14 @@ namespace EmpCent
     public partial class Oferta_regist : Form
     {
         private String email;
+        private String idOf = null;
+        private Oferta of = null;
         public Oferta_regist(String id = null, Oferta o = null)
         {
             email = Interaction.InputBox("Insira o seu e-mail.", "Login", "fdportas@sapo.pt");
+
+            idOf = id;
+            of = o;
 
             InitializeComponent();
 
@@ -155,128 +160,178 @@ namespace EmpCent
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (!Connection.verifySGBDConnection())
-                return;
-
-            SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.Recrutador JOIN projeto.Pessoa ON Recrutador.numRegisto = Pessoa.numRegisto WHERE email = @email", Connection.cn);
-            cmd.Parameters.AddWithValue("@email", email);
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            reader.Read();
-            String idRecr = reader["numRegisto"].ToString();
-            String idEmpr = reader["idEmpresa"].ToString();
-
-            Connection.cn.Close();
-
-
-            if (radioButton1.Checked)
+            if (idOf == null)
             {
-
                 if (!Connection.verifySGBDConnection())
                     return;
 
+                SqlCommand cmd = new SqlCommand("SELECT * FROM projeto.Recrutador JOIN projeto.Pessoa ON Recrutador.numRegisto = Pessoa.numRegisto WHERE email = @email", Connection.cn);
+                cmd.Parameters.AddWithValue("@email", email);
+                SqlDataReader reader = cmd.ExecuteReader();
 
-                String titulo = textBox1.Text;
-                String vagas = textBox2.Text;
-                String local = textBox3.Text;
-                String duracao = textBox4.Text;
-                String observacoes = textBox5.Text;
-                ComboBoxItem hab = (ComboBoxItem)comboBox2.SelectedItem;
-
-
-
-                SqlCommand cmd2 = new SqlCommand("EXEC insertEstagio @titulo, @vagas, @local, @idEmpresa, @idRecrutador, @habil, @duracao, @obsrv", Connection.cn);
-                cmd2.Parameters.Clear();
-                cmd2.Parameters.AddWithValue("@titulo", titulo);
-                cmd2.Parameters.AddWithValue("@vagas", vagas);
-                cmd2.Parameters.AddWithValue("@local", local);
-                cmd2.Parameters.AddWithValue("@idEmpresa", idEmpr);
-                cmd2.Parameters.AddWithValue("@idRecrutador", idRecr);
-                cmd2.Parameters.AddWithValue("@habil", hab.getId());
-                cmd2.Parameters.AddWithValue("@duracao", duracao);
-                cmd2.Parameters.AddWithValue("@obsrv", observacoes);
-                try
-                {
-                    cmd2.ExecuteNonQuery();
-                    MessageBox.Show("Oferta Criada");
-                    textBox1.Text = "";
-                    textBox2.Text = "";
-                    textBox3.Text = "";
-                    textBox4.Text = "";
-                    textBox5.Text = "";
-                    textBox6.Text = "";
-                    comboBox2.SelectedIndex = 0;
-                    comboBox1.SelectedIndex = 0;
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                reader.Read();
+                String idRecr = reader["numRegisto"].ToString();
+                String idEmpr = reader["idEmpresa"].ToString();
 
                 Connection.cn.Close();
+
+
+                if (radioButton1.Checked)
+                {
+
+                    if (!Connection.verifySGBDConnection())
+                        return;
+
+
+                    String titulo = textBox1.Text;
+                    String vagas = textBox2.Text;
+                    String local = textBox3.Text;
+                    String duracao = textBox4.Text;
+                    String observacoes = textBox5.Text;
+                    ComboBoxItem hab = (ComboBoxItem)comboBox2.SelectedItem;
+
+
+
+                    SqlCommand cmd2 = new SqlCommand("EXEC insertEstagio @titulo, @vagas, @local, @idEmpresa, @idRecrutador, @habil, @duracao, @obsrv", Connection.cn);
+                    cmd2.Parameters.Clear();
+                    cmd2.Parameters.AddWithValue("@titulo", titulo);
+                    cmd2.Parameters.AddWithValue("@vagas", vagas);
+                    cmd2.Parameters.AddWithValue("@local", local);
+                    cmd2.Parameters.AddWithValue("@idEmpresa", idEmpr);
+                    cmd2.Parameters.AddWithValue("@idRecrutador", idRecr);
+                    cmd2.Parameters.AddWithValue("@habil", hab.getId());
+                    cmd2.Parameters.AddWithValue("@duracao", duracao);
+                    cmd2.Parameters.AddWithValue("@obsrv", observacoes);
+                    try
+                    {
+                        cmd2.ExecuteNonQuery();
+                        MessageBox.Show("Oferta Criada");
+                        textBox1.Text = "";
+                        textBox2.Text = "";
+                        textBox3.Text = "";
+                        textBox4.Text = "";
+                        textBox5.Text = "";
+                        textBox6.Text = "";
+                        comboBox2.SelectedIndex = 0;
+                        comboBox1.SelectedIndex = 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                    Connection.cn.Close();
+                }
+                else if (radioButton2.Checked)
+                {
+                    if (!Connection.verifySGBDConnection())
+                        return;
+
+                    String titulo = textBox1.Text;
+                    String vagas = textBox2.Text;
+                    String local = textBox3.Text;
+                    String salario = textBox4.Text;
+                    String descr = textBox5.Text;
+                    String expNec = textBox6.Text;
+                    ComboBoxItem cb2 = (ComboBoxItem)comboBox1.SelectedItem;
+                    String tipoContr = cb2.getId();
+                    ComboBoxItem hab = (ComboBoxItem)comboBox2.SelectedItem;
+
+                    SqlCommand cmd2 = new SqlCommand("EXEC insertEmprego @titulo, @vagas, @local, @idEmpresa, @idRecrutador, @habil, @sal, @tipoCont, @exp, @descr", Connection.cn);
+                    cmd2.Parameters.Clear();
+                    cmd2.Parameters.AddWithValue("@titulo", titulo);
+                    cmd2.Parameters.AddWithValue("@vagas", vagas);
+                    cmd2.Parameters.AddWithValue("@local", local);
+                    cmd2.Parameters.AddWithValue("@idEmpresa", idEmpr);
+                    cmd2.Parameters.AddWithValue("@idRecrutador", idRecr);
+                    cmd2.Parameters.AddWithValue("@habil", hab.getId());
+                    cmd2.Parameters.AddWithValue("@sal", salario);
+                    cmd2.Parameters.AddWithValue("@descr", descr);
+                    cmd2.Parameters.AddWithValue("@exp", expNec);
+                    cmd2.Parameters.AddWithValue("@tipoCont", tipoContr);
+
+                    try
+                    {
+                        cmd2.ExecuteNonQuery();
+                        MessageBox.Show("Oferta Criada");
+                        textBox1.Text = "";
+                        textBox2.Text = "";
+                        textBox3.Text = "";
+                        textBox4.Text = "";
+                        textBox5.Text = "";
+                        textBox6.Text = "";
+                        comboBox2.SelectedIndex = 0;
+                        comboBox1.SelectedIndex = 0;
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                    Connection.cn.Close();
+                }
             }
-            else if (radioButton2.Checked)
-            {
+            else {
                 if (!Connection.verifySGBDConnection())
                     return;
-
+                
+                SqlCommand cmd;
+                
                 String titulo = textBox1.Text;
-                String vagas = textBox2.Text;
-                String local = textBox3.Text;
-                String salario = textBox4.Text;
-                String descr = textBox5.Text;
-                String expNec = textBox6.Text;
-                ComboBoxItem cb2 = (ComboBoxItem)comboBox1.SelectedItem;
-                String tipoContr = cb2.getId();
-                MessageBox.Show(tipoContr);
-                ComboBoxItem hab = (ComboBoxItem)comboBox2.SelectedItem;
+                String vagas = textBox2.Text ;
+                String local = textBox3.Text ;
+                if (of.getTipo().Equals("emprego"))
+                {
+                    String salario = textBox4.Text;
+                    String descr = textBox5.Text;
+                    String tipo = textBox6.Text;
+                    ComboBoxItem cb1 = (ComboBoxItem)comboBox1.SelectedItem;
+                    ComboBoxItem cb2 = (ComboBoxItem)comboBox2.SelectedItem;
 
-                SqlCommand cmd2 = new SqlCommand("EXEC insertEmprego @titulo, @vagas, @local, @idEmpresa, @idRecrutador, @habil, @sal, @tipoCont, @exp, @descr", Connection.cn);
-                cmd2.Parameters.Clear();
-                cmd2.Parameters.AddWithValue("@titulo", titulo);
-                cmd2.Parameters.AddWithValue("@vagas", vagas);
-                cmd2.Parameters.AddWithValue("@local", local);
-                cmd2.Parameters.AddWithValue("@idEmpresa", idEmpr);
-                cmd2.Parameters.AddWithValue("@idRecrutador", idRecr);
-                cmd2.Parameters.AddWithValue("@habil", hab.getId());
-                /*var parameter = new SqlParameter();
-                parameter.ParameterName = "@sal";
-                parameter.SqlDbType = SqlDbType.Int;
-                parameter.Direction = ParameterDirection.Input;
-                parameter.Value = Int32.Parse(salario);
-                cmd2.Parameters.Add(parameter);
-                cmd2.Parameters.AddWithValue("@descr", descr);
-                cmd2.Parameters.AddWithValue("@exp", expNec);
-                var parameter2 = new SqlParameter();
-                parameter2.ParameterName = "@tipoCont";
-                parameter2.SqlDbType = SqlDbType.Int;
-                parameter2.Direction = ParameterDirection.Input;
-                parameter2.Value = Int32.Parse(tipoContr);
-                cmd2.Parameters.Add(parameter2);
-                */
-                cmd2.Parameters.AddWithValue("@sal", salario);
-                cmd2.Parameters.AddWithValue("@descr", descr);
-                cmd2.Parameters.AddWithValue("@exp", expNec);
-                cmd2.Parameters.AddWithValue("@tipoCont", tipoContr);
+                    cmd = new SqlCommand("EXEC updateEmprego @titulo, @vagas, @local, @idemp, @idRecr, @habil, @sal, @tipoCont, @exp, @descr, @idOferta", Connection.cn);
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@titulo", titulo);
+                    cmd.Parameters.AddWithValue("@vagas", vagas);
+                    cmd.Parameters.AddWithValue("@local", local);
+                    cmd.Parameters.AddWithValue("@idemp", of.getIdEmp());
+                    cmd.Parameters.AddWithValue("@idRecr", of.getIdRec());
+                    cmd.Parameters.AddWithValue("@habil", cb2.getId());
+                    cmd.Parameters.AddWithValue("@sal", salario);
+                    cmd.Parameters.AddWithValue("@tipoCont", cb1.getId());
+                    cmd.Parameters.AddWithValue("@exp", tipo);
+                    cmd.Parameters.AddWithValue("@descr", descr);
+                    cmd.Parameters.AddWithValue("@idOferta", of.getId());
+
+                }
+                else {
+                    String duracao = textBox4.Text;
+                    String observacoes = textBox5.Text;
+                    ComboBoxItem cb2 = (ComboBoxItem)comboBox2.SelectedItem;
+
+                    cmd = new SqlCommand("EXEC updateEstagio @titulo, @vagas, @local, @idemp, @idRecr, @habil, @duracao, @obsv,@idOferta", Connection.cn);
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@titulo", titulo);
+                    cmd.Parameters.AddWithValue("@vagas", vagas);
+                    cmd.Parameters.AddWithValue("@local", local);
+                    cmd.Parameters.AddWithValue("@idemp", of.getIdEmp());
+                    cmd.Parameters.AddWithValue("@idRecr", of.getIdRec());
+                    cmd.Parameters.AddWithValue("@habil", cb2.getId());
+                    cmd.Parameters.AddWithValue("@duracao", duracao);
+                    cmd.Parameters.AddWithValue("@obsv", observacoes);
+                    cmd.Parameters.AddWithValue("@idOferta", of.getId());
+
+                }
 
                 try
                 {
-                    cmd2.ExecuteNonQuery();
-                    MessageBox.Show("Oferta Criada");
-                    textBox1.Text = "";
-                    textBox2.Text = "";
-                    textBox3.Text = "";
-                    textBox4.Text = "";
-                    textBox5.Text = "";
-                    textBox6.Text = "";
-                    comboBox2.SelectedIndex = 0;
-                    comboBox1.SelectedIndex = 0;
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Informação Alterada");
                 }
                 catch (SqlException ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-
+                
                 Connection.cn.Close();
             }
 

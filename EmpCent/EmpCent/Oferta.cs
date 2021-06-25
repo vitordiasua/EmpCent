@@ -38,6 +38,20 @@ namespace EmpCent
             return this.id;
         }
 
+        public String getTipo() {
+            return tipo;
+        }
+
+        public String getIdEmp()
+        {
+            return idEmpresa;
+        }
+
+        public String getIdRec()
+        {
+            return idRecrt;
+        }
+
         public override String ToString() {
             return titulo + "".PadRight(50 - titulo.Length) + vagas + "".PadRight(20 - vagas.Length) + localizacao + "".PadRight(30 - localizacao.Length) + data;
         }
