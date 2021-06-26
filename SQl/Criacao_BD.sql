@@ -216,33 +216,6 @@ create table projeto.Emprego(
 	Constraint FK_Tipo_Contrato_Emprego
 		foreign key (tipoContrato) references projeto.Tipo_Contrato (idTipoContrato))
 
-create table projeto.Teste(
-	idTeste					int Identity(1,1),
-	idOferta				int,
-	Constraint PK_Teste
-		primary key (idOferta, idTeste))
-
-create table projeto.Pergunta(
-	idPergunta				int Identity(1,1),
-	idTeste					int,
-	idOferta				int,
-	descricao				varchar(50),
-	Constraint PK_Pergunta
-		primary key (idOferta, idTeste, idPergunta),
-	Constraint FK_Teste
-		foreign key (idOferta, idTeste) references projeto.Teste (idOferta, idTeste))
-
-create table projeto.Resposta(
-	idResposta				int Identity(1,1),
-	idPergunta				int,
-	idTeste					int,
-	idOferta				int,
-	descricao				varchar(150),
-	Constraint PK_Resposta
-		primary key (idOferta, idTeste, idPergunta, idResposta),
-	Constraint FK_Pergunta
-		foreign key (idOferta, idTeste, idPergunta) references projeto.Pergunta (idOferta, idTeste, idPergunta))
-
 create table projeto.Area_Oferta(
 	idOferta				int,
 	idCategoria				smallint,
