@@ -124,7 +124,7 @@ create proc updateRecrutador(
 			@email						nvarchar(254),
 			@metodoDeSelecao			varchar(100),
 			@idEmpresa					int,
-			@oldemail					int,
+			@oldemail					varchar(254),
 			@numRegisto					int output)
 as
 	begin
@@ -137,7 +137,6 @@ as
 	commit;
 	end
 go
-
 
 create proc insertEmpresa(
 	@nome				varchar(50),

@@ -40,7 +40,7 @@ namespace EmpCent
 
                 while (reader.Read())
                 {
-                    String idRec = reader["numRegisto"].ToString();
+                    idRec = reader["numRegisto"].ToString();
                     String primeiroNome = reader["primeiroNome"].ToString();
                     String nomesMeio = reader["nomesMeio"].ToString();
                     String ultimoNome = reader["ultimoNome"].ToString();
