@@ -58,7 +58,7 @@ namespace EmpCent
                     textBox5.Text = emailAns;
                     textBox6.Text = metodoDeSelecao;
                     comboBox1.SelectedIndex = Int32.Parse(sexo);
-                    comboBox3.SelectedIndex = Int32.Parse(idEmpresa);
+                    comboBox3.SelectedIndex = Int32.Parse(idEmpresa) - 1;
 
                     button6.Text = "Atualizar";
                     atualizar = true;
